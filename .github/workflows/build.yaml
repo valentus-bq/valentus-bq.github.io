@@ -1,4 +1,4 @@
-name: Build and Deploy to Build Branch
+name: Deploy to Build Branch
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,19 +18,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9.19'  # Specify the Python version you're using
+          python-version: '3.9.19'
 
       # Step 3: Install dependencies
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
-      # Step 4: Build the project
-      - name: Build the project
-        run: |
-          jupyter-book build .  # Adjust the path to your book's directory
-
-      # Step 5: Commit built files to the build branch
+      # Step 4: Copy pre-built files to the build branch
       - name: Deploy to Build Branch
         run: |
           git config --local user.name "GitHub Actions"
@@ -39,7 +34,7 @@ jobs:
           # Switch to build branch
           git checkout build || git checkout -b build
 
-          # Copy build artifacts
+          # Copy pre-built artifacts (assuming they're in _build/html/)
           cp -r ./_build/html/* .
 
           # Commit and push changes
