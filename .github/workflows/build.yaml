@@ -1,0 +1,43 @@
+name: Deploy to Build Branch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9.19'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # Step 4: Copy pre-built files to the build branch
+      - name: Deploy to Build Branch
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+
+          # Switch to build branch
+          git checkout build || git checkout -b build
+
+          # Copy pre-built artifacts (assuming they're in _build/html/)
+          cp -r ./_build/html/* .
+
+          # Commit and push changes
+          git add .
+          git commit -m "Update build from main branch"
+          git push origin build --force

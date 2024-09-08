@@ -1,0 +1,15 @@
+Name	Sustnlytcs ESG Rsk Scr	ISS QualSc	ESG Disc Score	% Indep Directors	% Women on Bd	CEO Tnr AsOf FY End	Tot Comp Pd to CEO & Equiv	Pers Expn per Empl	% Women Emp	LTIR	Engy Intens/Sls	Wste Per Sls	Wtr Intens/Sls
+Median	12.06	4.5	41.28	54.55	16.67%	2	1.79M	20.92k	36.15%	0.15	10.8	1.58	122
+Nintendo Co Ltd	15.62	4	--	46.15	30.77%	5.83	2.48M	49.29k	--	--	--	--	--
+Garmin Ltd	20.99	9	--	66.67	33.33%	11	6.54M	--	--	--	--	--	--
+Logitech International SA	8.51	1	--	100	40.00%	0.33	16.00M	--	38.00%	--	5.75	--	--
+LG Electronics Inc	20.45	5	--	66.67	16.67%	2	1.79M	--	21.96%	0.15	28.13	2.81	116.02
+Sharp Corp/Japan	20.92	4	--	66.67	11.11%	2	821.43k	20.92k	--	--	--	--	--
+Nikon Corp	16.73	2	--	54.55	18.18%	1	1.05M	62.46k	37.30%	--	94.62	1.58	785.51
+Hisense Visual Technology Co L	--	--	44.63	37.5	12.50%	0.92	464.83k	13.02k	42.03%	--	5.63	--	--
+Casio Computer Co Ltd	20.55	6	--	45.45	9.09%	2.83	1.27M	31.53k	--	--	--	--	--
+TCL Electronics Holdings Ltd	0	--	--	--	--	--	--	30.29k	--	--	--	--	--
+Skyworth Group Ltd	0	--	--	37.5	12.50%	1.75	10.34M	17.71k	35.00%	--	15.85	0.25	122
+Konka Group Co Ltd	0	--	--	--	--	0.75	198.99k	8.17k	--	--	--	--	--
+GoPro Inc	0	8	41.28	87.5	25.00%	12.08	5.68M	--	29.40%	--	2.53	--	--
+Funai Electric Co Ltd	0	--	32.52	42.86	0.00%	--	--	11.64k	--	--	--	--	--
