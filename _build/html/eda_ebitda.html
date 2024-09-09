@@ -1,0 +1,4094 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>EBITDA &#8212; Proyecto final de Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'eda_ebitda';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ESG" href="eda_esg.html" />
+    <link rel="prev" title="Contexto" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Proyecto final de Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Proyecto final de Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Contexto
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">EBITDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda_esg.html">ESG</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/eda_ebitda.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>EBITDA</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos">Conceptos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-ajustado">EBITDA Ajustado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#margen-ebitda">Margen EBITDA</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo">Desarrollo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-faltantes">Datos faltantes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empresas">Empresas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">EBITDA ajustado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-monedas">Conversión de monedas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-ajustado-por-ano">EBITDA ajustado por año</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-ajustado-promedio-por-empresa">EBITDA ajustado promedio por empresa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-ajustado-promedio-por-pais">EBITDA ajustado promedio por país</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-ajustado-por-empresa">EBITDA ajustado por empresa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-normalidad">Pruebas de normalidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputacion-con-iterativeimputer">Imputación con IterativeImputer()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-por-empresa-sin-datos-faltantes">EBITDA por empresa sin datos faltantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Margen EBITDA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#margen-ebitda-por-ano">Margen EBITDA por año</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promedio-de-margen-ebitda-por-empresa">Promedio de margen EBITDA por empresa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promedio-de-margen-ebitda-por-pais">Promedio de margen EBITDA por país</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Imputación con IterativeImputer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#margen-ebitda-por-empresa-sin-datos-faltantes">Margen EBITDA por empresa sin datos faltantes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatterplot-entre-ebitda-y-margen-ebitda">Scatterplot entre EBITDA y Margen EBITDA</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ebitda">
+<h1>EBITDA<a class="headerlink" href="#ebitda" title="Link to this heading">#</a></h1>
+<section id="conceptos">
+<h2>Conceptos<a class="headerlink" href="#conceptos" title="Link to this heading">#</a></h2>
+<p>EBITDA significa Beneficios Antes de Intereses, Impuestos, Depreciación y Amortización. Es una medida de la rentabilidad básica de una empresa antes de considerar elementos financieros y no operativos.</p>
+<section id="ebitda-ajustado">
+<h3>EBITDA Ajustado<a class="headerlink" href="#ebitda-ajustado" title="Link to this heading">#</a></h3>
+<p>El EBITDA ajustado va un paso más allá al excluir elementos extraordinarios, irregulares o no recurrentes, como:</p>
+<ul class="simple">
+<li><p>Costos de reestructuración</p></li>
+<li><p>Honorarios legales por demandas</p></li>
+<li><p>Venta de activos</p></li>
+<li><p>Costos relacionados con fusiones o adquisiciones</p></li>
+<li><p>Otros gastos temporales que no reflejan las operaciones continuas de la empresa</p></li>
+</ul>
+<p>Al eliminar estos elementos irregulares, el EBITDA ajustado proporciona una medida más consistente y comparable de la rentabilidad a lo largo del tiempo y entre diferentes empresas.</p>
+<p>Está diseñado para reflejar los beneficios reales operativos de una empresa, eliminando elementos que no forman parte de sus actividades comerciales habituales. Esto permite una evaluación más precisa de su desempeño económico.</p>
+</section>
+<section id="margen-ebitda">
+<h3>Margen EBITDA<a class="headerlink" href="#margen-ebitda" title="Link to this heading">#</a></h3>
+<p>El margen EBITDA es una métrica financiera que expresa el porcentaje de los ingresos que una empresa genera como ganancias antes de restar intereses, impuestos, depreciación y amortización. En otras palabras, mide qué tan eficiente es una empresa en convertir sus ingresos en beneficios operativos antes de tomar en cuenta esos gastos no operativos.</p>
+<p>Un margen EBITDA alto indica que la empresa es muy eficiente en generar ganancias operativas a partir de sus ingresos. Es una señal de fuerte rentabilidad operativa, en cambio, un margen EBITDA bajo sugiere que la empresa tiene altos costos operativos en relación con sus ingresos, lo que puede indicar problemas en la eficiencia o altos costos de producción.</p>
+</section>
+</section>
+<section id="desarrollo">
+<h2>Desarrollo<a class="headerlink" href="#desarrollo" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">from</span> <span class="nn">sklearn.experimental</span> <span class="kn">import</span> <span class="n">enable_iterative_imputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">IterativeImputer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ebitda</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/ebitda_y.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La base de datos <code class="docutils literal notranslate"><span class="pre">ebitda</span></code> contiene datos del indicador EBITDA ajustado y del margen EBITDA de 13 empresas enfocadas en la electrónica de consumo a lo largo de los últimos años.</p>
+<section id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h3>
+<p>En total, <code class="docutils literal notranslate"><span class="pre">ebitda</span></code> cuenta con 15 columnas, 12 de ellas numéricas, correspondiente al margen EBITDA y EBITDA ajustado desde el 2013 al 2024.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ebitda</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>2013</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>PAIS</th>
+      <th>MARGEN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>39.0</td>
+      <td>39.9</td>
+      <td>40.8</td>
+      <td>26.4</td>
+      <td>33.4</td>
+      <td>29.1</td>
+      <td>26.1</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12.4</td>
+      <td>13.4</td>
+      <td>14.5</td>
+      <td>11.6</td>
+      <td>13.2</td>
+      <td>11.0</td>
+      <td>9.7</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>-1.3</td>
+      <td>0.4</td>
+      <td>5.2</td>
+      <td>-6.0</td>
+      <td>-2.7</td>
+      <td>-8.6</td>
+      <td>1.7</td>
+      <td>-0.5</td>
+      <td>0.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>-0.7</td>
+      <td>0.2</td>
+      <td>2.4</td>
+      <td>-3.6</td>
+      <td>-2.0</td>
+      <td>-6.6</td>
+      <td>1.6</td>
+      <td>-0.6</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Garmin Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>769.7</td>
+      <td>874.1</td>
+      <td>1076.8</td>
+      <td>1209.1</td>
+      <td>1408.9</td>
+      <td>1230.3</td>
+      <td>1317.3</td>
+      <td>1430.5</td>
+      <td>US</td>
+      <td>AJ</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Se nota inmediatamente la presencia de datos faltantes en la gran mayoría de los años, siendo solo el intervalo entre 2018 y 2021 los únicos años con los registros completos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ebitda</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>2013</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>PAIS</th>
+      <th>MARGEN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>26</td>
+      <td>2.000000</td>
+      <td>2.000000</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>16.000000</td>
+      <td>26.000000</td>
+      <td>26.000000</td>
+      <td>26.00000</td>
+      <td>26.000000</td>
+      <td>24.000000</td>
+      <td>24.000000</td>
+      <td>12.000000</td>
+      <td>26</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>13</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>NaN</td>
+      <td>-1.000000</td>
+      <td>0.300000</td>
+      <td>690.600000</td>
+      <td>915.750000</td>
+      <td>603.581250</td>
+      <td>365.861538</td>
+      <td>448.869231</td>
+      <td>540.65000</td>
+      <td>625.688462</td>
+      <td>679.300000</td>
+      <td>650.529167</td>
+      <td>243.608333</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>NaN</td>
+      <td>0.424264</td>
+      <td>0.141421</td>
+      <td>1371.601205</td>
+      <td>1832.177818</td>
+      <td>1141.829736</td>
+      <td>979.016985</td>
+      <td>1070.377761</td>
+      <td>1400.25983</td>
+      <td>1572.497342</td>
+      <td>1631.520331</td>
+      <td>1688.967194</td>
+      <td>440.298297</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>NaN</td>
+      <td>-1.300000</td>
+      <td>0.200000</td>
+      <td>2.400000</td>
+      <td>-6.000000</td>
+      <td>-92.700000</td>
+      <td>-240.100000</td>
+      <td>0.100000</td>
+      <td>-607.20000</td>
+      <td>-825.500000</td>
+      <td>-1788.200000</td>
+      <td>-2018.100000</td>
+      <td>2.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>NaN</td>
+      <td>-1.150000</td>
+      <td>0.250000</td>
+      <td>4.500000</td>
+      <td>-4.200000</td>
+      <td>0.700000</td>
+      <td>1.875000</td>
+      <td>5.600000</td>
+      <td>4.30000</td>
+      <td>2.350000</td>
+      <td>6.175000</td>
+      <td>3.850000</td>
+      <td>14.950000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>NaN</td>
+      <td>-1.000000</td>
+      <td>0.300000</td>
+      <td>6.000000</td>
+      <td>2.500000</td>
+      <td>5.850000</td>
+      <td>12.950000</td>
+      <td>24.800000</td>
+      <td>21.10000</td>
+      <td>18.050000</td>
+      <td>29.350000</td>
+      <td>19.600000</td>
+      <td>29.400000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>NaN</td>
+      <td>-0.850000</td>
+      <td>0.350000</td>
+      <td>692.100000</td>
+      <td>922.450000</td>
+      <td>808.400000</td>
+      <td>181.500000</td>
+      <td>233.525000</td>
+      <td>303.30000</td>
+      <td>527.325000</td>
+      <td>681.550000</td>
+      <td>537.975000</td>
+      <td>195.500000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>NaN</td>
+      <td>-0.700000</td>
+      <td>0.400000</td>
+      <td>2748.000000</td>
+      <td>3664.000000</td>
+      <td>4236.100000</td>
+      <td>4703.400000</td>
+      <td>4942.500000</td>
+      <td>6548.00000</td>
+      <td>6896.900000</td>
+      <td>6536.100000</td>
+      <td>6767.400000</td>
+      <td>1430.500000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="datos-faltantes">
+<h3>Datos faltantes<a class="headerlink" href="#datos-faltantes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">ebitda</span><span class="o">.</span><span class="n">isnull</span><span class="p">(),</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Datos Faltantes&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b75d6e6b56a8e7dc1ebabcdc7e2509f7a3eb1d4f2c9d5345b9549be6ffe0ee7f.png" src="_images/b75d6e6b56a8e7dc1ebabcdc7e2509f7a3eb1d4f2c9d5345b9549be6ffe0ee7f.png" />
+</div>
+</div>
+<p>Como se mencionaba, son 13 empresas, donde cada una cuenta con dos registros dentro del dataset, uno asociado al margen EBITDA, el cual representa el porcentaje del EBITDA sobre los ingresos, dando una idea de la rentabilidad operativa, y otro asociado al EBITDA ajustado, el cual es una versión del EBITDA que excluye elementos no recurrentes, lo que permite tener una mejor representación de las operaciones normales de una empresa.</p>
+</section>
+<section id="empresas">
+<h3>Empresas<a class="headerlink" href="#empresas" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ebitda</span><span class="p">[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Casio Computer Co Ltd</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Funai Electric Co Ltd</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>TCL Electronics Holdings</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Hisense Visual Technology Co L</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Nikon Corp</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>LG Electronics Inc</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Logitech International SA</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Nintendo Co Ltd</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>GoPro Inc</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Konka Group Co Ltd</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Skyworth Group Ltd</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Sharp Corp/Japan</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ebitda</span><span class="p">[</span><span class="s1">&#39;PAIS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Porcentaje&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">13</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;husl&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Porcentaje&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Porcentaje de empresas por país&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0a14be5b5fdc15dd62fd332f1cbac8087f1fcea34d9796de253d09348e830a1a.png" src="_images/0a14be5b5fdc15dd62fd332f1cbac8087f1fcea34d9796de253d09348e830a1a.png" />
+</div>
+</div>
+<p>Estas son las 13 empresas que componen el dataframe, donde el 38,5% provienen de Japón, el 15.4% China, Estados Unidos y Hong Kong cada uno,  finalmente un 7.7% de Corea del Sur y Suiza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_aj</span> <span class="o">=</span> <span class="n">ebitda</span><span class="p">[</span><span class="n">ebitda</span><span class="p">[</span><span class="s1">&#39;MARGEN&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;AJ&#39;</span><span class="p">]</span>
+<span class="n">e_per</span> <span class="o">=</span> <span class="n">ebitda</span><span class="p">[</span><span class="n">ebitda</span><span class="p">[</span><span class="s1">&#39;MARGEN&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;PER&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para analizar mejor esos indicadores, se dividió la base de datos en dos, tomando una para el margen EBITDA y otra para el EBITDA ajustado.</p>
+</section>
+</section>
+<section id="id1">
+<h2>EBITDA ajustado<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_aj</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>2013</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>PAIS</th>
+      <th>MARGEN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>39.0</td>
+      <td>39.9</td>
+      <td>40.8</td>
+      <td>26.4</td>
+      <td>33.4</td>
+      <td>29.1</td>
+      <td>26.1</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>-1.3</td>
+      <td>0.4</td>
+      <td>5.2</td>
+      <td>-6.0</td>
+      <td>-2.7</td>
+      <td>-8.6</td>
+      <td>1.7</td>
+      <td>-0.5</td>
+      <td>0.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Garmin Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>769.7</td>
+      <td>874.1</td>
+      <td>1076.8</td>
+      <td>1209.1</td>
+      <td>1408.9</td>
+      <td>1230.3</td>
+      <td>1317.3</td>
+      <td>1430.5</td>
+      <td>US</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>TCL Electronics Holdings</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>924.5</td>
+      <td>1081.1</td>
+      <td>1552.3</td>
+      <td>1787.4</td>
+      <td>756.6</td>
+      <td>2848.4</td>
+      <td>1905.1</td>
+      <td>NaN</td>
+      <td>HK</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1254.0</td>
+      <td>584.0</td>
+      <td>746.0</td>
+      <td>1519.5</td>
+      <td>1580.1</td>
+      <td>2308.9</td>
+      <td>2994.6</td>
+      <td>NaN</td>
+      <td>CH</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Nikon Corp</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>97.2</td>
+      <td>93.9</td>
+      <td>52.1</td>
+      <td>2.0</td>
+      <td>71.6</td>
+      <td>88.1</td>
+      <td>78.4</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>LG Electronics Inc</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4236.1</td>
+      <td>4703.4</td>
+      <td>4942.5</td>
+      <td>6548.0</td>
+      <td>6896.9</td>
+      <td>6536.1</td>
+      <td>6767.4</td>
+      <td>NaN</td>
+      <td>KS</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Logitech International SA</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>283.0</td>
+      <td>343.8</td>
+      <td>389.2</td>
+      <td>1251.9</td>
+      <td>916.3</td>
+      <td>605.7</td>
+      <td>698.7</td>
+      <td>SW</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Nintendo Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>186.6</td>
+      <td>259.3</td>
+      <td>361.9</td>
+      <td>651.4</td>
+      <td>603.3</td>
+      <td>515.4</td>
+      <td>546.8</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>GoPro Inc</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-92.7</td>
+      <td>-29.7</td>
+      <td>51.1</td>
+      <td>34.3</td>
+      <td>142.8</td>
+      <td>63.3</td>
+      <td>-60.6</td>
+      <td>NaN</td>
+      <td>US</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Konka Group Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>492.2</td>
+      <td>-240.1</td>
+      <td>28.0</td>
+      <td>-607.2</td>
+      <td>-825.5</td>
+      <td>-1788.2</td>
+      <td>-2018.1</td>
+      <td>NaN</td>
+      <td>CH</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Skyworth Group Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2748.0</td>
+      <td>3664.0</td>
+      <td>2042.0</td>
+      <td>1683.0</td>
+      <td>2258.7</td>
+      <td>2470.0</td>
+      <td>4081.0</td>
+      <td>3190.6</td>
+      <td>3303.4</td>
+      <td>NaN</td>
+      <td>HK</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Sharp Corp/Japan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>166.2</td>
+      <td>156.2</td>
+      <td>127.5</td>
+      <td>155.1</td>
+      <td>157.1</td>
+      <td>64.1</td>
+      <td>45.9</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Como cada empresa trabaja con divisas diferentes, para el correcto análisis del EBITDA ajustado, será necesario realizar la conversión de estos datos año por año según el país a USD.</p>
+<p>Para esto se hará uso de los datos históricos proporcionados por <a class="reference external" href="http://investing.com">investing.com</a>, en Japón, Hong Kong, China y Corea del Sur. En el caso de Logitech International SA, ya se encuentra en USD.</p>
+<section id="conversion-de-monedas">
+<h3>Conversión de monedas<a class="headerlink" href="#conversion-de-monedas" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cny</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/CNY_USD Historical Data.csv&#39;</span><span class="p">)</span>
+<span class="n">hkd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/HKD_USD Historical Data.csv&#39;</span><span class="p">)</span>
+<span class="n">jpy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/JPY_USD Historical Data.csv&#39;</span><span class="p">)</span>
+<span class="n">krw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/KRW_USD Historical Data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CNY a USD</span>
+<span class="n">cny</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">cny</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">/%Y&#39;</span><span class="p">)</span>
+<span class="n">cny</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cny</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">appy</span> <span class="o">=</span> <span class="n">cny</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="c1">#acny = appy.set_index(&#39;Year&#39;).to_dict()[&#39;Price&#39;]</span>
+<span class="n">acny</span> <span class="o">=</span> <span class="n">appy</span>
+
+<span class="c1"># HKD a USD</span>
+<span class="n">hkd</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">hkd</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">/%Y&#39;</span><span class="p">)</span>
+<span class="n">hkd</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hkd</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">appy</span> <span class="o">=</span> <span class="n">hkd</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="c1">#ahkd = appy.set_index(&#39;Year&#39;).to_dict()[&#39;Price&#39;]</span>
+<span class="n">ahkd</span> <span class="o">=</span> <span class="n">appy</span>
+
+<span class="c1"># JPY a USD</span>
+<span class="n">jpy</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">jpy</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">/%Y&#39;</span><span class="p">)</span>
+<span class="n">jpy</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jpy</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">appy</span> <span class="o">=</span> <span class="n">jpy</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="c1">#ajpy = appy.set_index(&#39;Year&#39;).to_dict()[&#39;Price&#39;]</span>
+<span class="n">ajpy</span> <span class="o">=</span> <span class="n">appy</span>
+
+<span class="c1"># KRW a USD</span>
+<span class="n">krw</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">krw</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">/%Y&#39;</span><span class="p">)</span>
+<span class="n">krw</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">krw</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">appy</span> <span class="o">=</span> <span class="n">krw</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">akrw</span> <span class="o">=</span> <span class="n">appy</span>
+<span class="c1">#akrw = appy.set_index(&#39;Year&#39;).to_dict()[&#39;Price&#39;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Millones a millones</span>
+<span class="n">eaj_ch</span> <span class="o">=</span> <span class="n">e_aj</span><span class="p">[</span><span class="n">e_aj</span><span class="p">[</span><span class="s1">&#39;PAIS&#39;</span><span class="p">]</span> <span class="o">==</span>  <span class="s1">&#39;CH&#39;</span><span class="p">]</span>
+<span class="n">exchange_rates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">acny</span><span class="o">.</span><span class="n">Price</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">acny</span><span class="o">.</span><span class="n">Year</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="n">year</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2025</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">eaj_ch</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">year</span><span class="p">]):</span>
+            <span class="n">eaj_ch</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">*</span> <span class="n">exchange_rates</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Millones a millones</span>
+
+<span class="n">eaj_hk</span> <span class="o">=</span> <span class="n">e_aj</span><span class="p">[</span><span class="n">e_aj</span><span class="p">[</span><span class="s1">&#39;PAIS&#39;</span><span class="p">]</span> <span class="o">==</span>  <span class="s1">&#39;HK&#39;</span><span class="p">]</span>
+<span class="n">exchange_rates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">ahkd</span><span class="o">.</span><span class="n">Price</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">ahkd</span><span class="o">.</span><span class="n">Year</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="n">year</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2025</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">eaj_hk</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">year</span><span class="p">]):</span>
+            <span class="n">eaj_hk</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">*</span> <span class="n">exchange_rates</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Los datos pasan de mil millones de wones a millones de dolares</span>
+<span class="n">eaj_ks</span> <span class="o">=</span> <span class="n">e_aj</span><span class="p">[</span><span class="n">e_aj</span><span class="p">[</span><span class="s1">&#39;PAIS&#39;</span><span class="p">]</span> <span class="o">==</span>  <span class="s1">&#39;KS&#39;</span><span class="p">]</span>
+<span class="n">exchange_rates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">akrw</span><span class="o">.</span><span class="n">Price</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">akrw</span><span class="o">.</span><span class="n">Year</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="n">year</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2025</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">eaj_ks</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">year</span><span class="p">]):</span>
+            <span class="n">eaj_ks</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">*</span> <span class="n">exchange_rates</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Los datos pasan de mil millones de yenes a millones de dolares</span>
+<span class="n">eaj_jp</span> <span class="o">=</span> <span class="n">e_aj</span><span class="p">[</span><span class="n">e_aj</span><span class="p">[</span><span class="s1">&#39;PAIS&#39;</span><span class="p">]</span> <span class="o">==</span>  <span class="s1">&#39;JP&#39;</span><span class="p">]</span>
+<span class="n">exchange_rates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">ajpy</span><span class="o">.</span><span class="n">Price</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">ajpy</span><span class="o">.</span><span class="n">Year</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="n">year</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2025</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">eaj_jp</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">year</span><span class="p">]):</span>
+            <span class="n">eaj_jp</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">*</span> <span class="n">exchange_rates</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eaj_us</span> <span class="o">=</span> <span class="n">e_aj</span><span class="p">[</span><span class="n">e_aj</span><span class="p">[</span><span class="s1">&#39;PAIS&#39;</span><span class="p">]</span> <span class="o">==</span>  <span class="s1">&#39;US&#39;</span><span class="p">]</span>
+<span class="n">eaj_sw</span> <span class="o">=</span> <span class="n">e_aj</span><span class="p">[</span><span class="n">e_aj</span><span class="p">[</span><span class="s1">&#39;PAIS&#39;</span><span class="p">]</span> <span class="o">==</span>  <span class="s1">&#39;SW&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eaj_usd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">eaj_ch</span><span class="p">,</span> <span class="n">eaj_hk</span><span class="p">,</span> <span class="n">eaj_jp</span><span class="p">,</span> <span class="n">eaj_ks</span><span class="p">,</span> <span class="n">eaj_us</span><span class="p">,</span> <span class="n">eaj_sw</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esta ya es la base de datos con la moneda en USD promedio según el año para todos los EBITDA de las diferentes empresas de electrónica de consumo. Ahora sí se puede realizar una comparación justa entre el rendimiento operativo de las diferentes empresas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eaj_usd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>2013</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>PAIS</th>
+      <th>MARGEN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>185.616115</td>
+      <td>88.400147</td>
+      <td>107.989931</td>
+      <td>220.313001</td>
+      <td>244.917316</td>
+      <td>343.572312</td>
+      <td>423.042535</td>
+      <td>NaN</td>
+      <td>CH</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Konka Group Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>72.855065</td>
+      <td>-36.343965</td>
+      <td>4.053241</td>
+      <td>-88.038206</td>
+      <td>-127.953449</td>
+      <td>-266.090350</td>
+      <td>-285.093882</td>
+      <td>NaN</td>
+      <td>CH</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>TCL Electronics Holdings</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>118.636462</td>
+      <td>137.939661</td>
+      <td>198.120465</td>
+      <td>230.434746</td>
+      <td>97.339054</td>
+      <td>363.749444</td>
+      <td>243.342819</td>
+      <td>NaN</td>
+      <td>HK</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Skyworth Group Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>354.444621</td>
+      <td>472.00743</td>
+      <td>262.039650</td>
+      <td>214.737259</td>
+      <td>288.278487</td>
+      <td>318.436737</td>
+      <td>525.033941</td>
+      <td>407.449437</td>
+      <td>421.950905</td>
+      <td>NaN</td>
+      <td>HK</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>39000.000000</td>
+      <td>39900.000000</td>
+      <td>40800.000000</td>
+      <td>26400.000000</td>
+      <td>33400.000000</td>
+      <td>29100.000000</td>
+      <td>26100.0</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>-1300.0</td>
+      <td>400.0</td>
+      <td>5200.000000</td>
+      <td>-6000.00000</td>
+      <td>-2700.000000</td>
+      <td>-8600.000000</td>
+      <td>1700.000000</td>
+      <td>-500.000000</td>
+      <td>800.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>97200.000000</td>
+      <td>93900.000000</td>
+      <td>52100.000000</td>
+      <td>2000.000000</td>
+      <td>71600.000000</td>
+      <td>88100.000000</td>
+      <td>78400.0</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Nintendo Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>186600.000000</td>
+      <td>259300.000000</td>
+      <td>361900.000000</td>
+      <td>651400.000000</td>
+      <td>603300.000000</td>
+      <td>515400.000000</td>
+      <td>546800.0</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Sharp Corp/Japan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>166200.000000</td>
+      <td>156200.000000</td>
+      <td>127500.000000</td>
+      <td>155100.000000</td>
+      <td>157100.000000</td>
+      <td>64100.000000</td>
+      <td>45900.0</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>LG Electronics Inc</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3747.987596</td>
+      <td>4275.976647</td>
+      <td>4244.107380</td>
+      <td>5560.002726</td>
+      <td>6028.110948</td>
+      <td>5075.533038</td>
+      <td>5183.763537</td>
+      <td>NaN</td>
+      <td>KS</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Garmin Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>769.700000</td>
+      <td>874.100000</td>
+      <td>1076.800000</td>
+      <td>1209.100000</td>
+      <td>1408.900000</td>
+      <td>1230.300000</td>
+      <td>1317.300000</td>
+      <td>1430.5</td>
+      <td>US</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>GoPro Inc</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-92.700000</td>
+      <td>-29.700000</td>
+      <td>51.100000</td>
+      <td>34.300000</td>
+      <td>142.800000</td>
+      <td>63.300000</td>
+      <td>-60.600000</td>
+      <td>NaN</td>
+      <td>US</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Logitech International SA</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>283.000000</td>
+      <td>343.800000</td>
+      <td>389.200000</td>
+      <td>1251.900000</td>
+      <td>916.300000</td>
+      <td>605.700000</td>
+      <td>698.7</td>
+      <td>SW</td>
+      <td>AJ</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eaj_usd</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>2013</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>PAIS</th>
+      <th>MARGEN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>13</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.000000</td>
+      <td>2.000000</td>
+      <td>8.000000</td>
+      <td>13.000000</td>
+      <td>13.000000</td>
+      <td>13.000000</td>
+      <td>13.000000</td>
+      <td>12.000000</td>
+      <td>12.000000</td>
+      <td>6.000000</td>
+      <td>13</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>13</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>NaN</td>
+      <td>-1300.0</td>
+      <td>400.0</td>
+      <td>2777.222310</td>
+      <td>-2763.996285</td>
+      <td>295.516861</td>
+      <td>37400.623827</td>
+      <td>42870.326885</td>
+      <td>45359.519154</td>
+      <td>65020.849832</td>
+      <td>72794.509490</td>
+      <td>58712.450493</td>
+      <td>116554.866667</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3426.325067</td>
+      <td>4576.400342</td>
+      <td>1746.927968</td>
+      <td>67896.684172</td>
+      <td>80712.567555</td>
+      <td>102018.209683</td>
+      <td>181236.401879</td>
+      <td>173554.690913</td>
+      <td>146789.287018</td>
+      <td>212799.028593</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>NaN</td>
+      <td>-1300.0</td>
+      <td>400.0</td>
+      <td>354.444621</td>
+      <td>-6000.000000</td>
+      <td>-2700.000000</td>
+      <td>-8600.000000</td>
+      <td>4.053241</td>
+      <td>-500.000000</td>
+      <td>-127.953449</td>
+      <td>-266.090350</td>
+      <td>-285.093882</td>
+      <td>698.700000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>NaN</td>
+      <td>-1300.0</td>
+      <td>400.0</td>
+      <td>1565.833466</td>
+      <td>-4381.998143</td>
+      <td>31.466299</td>
+      <td>88.400147</td>
+      <td>198.120465</td>
+      <td>220.313001</td>
+      <td>244.917316</td>
+      <td>358.705161</td>
+      <td>377.298884</td>
+      <td>7597.875000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>NaN</td>
+      <td>-1300.0</td>
+      <td>400.0</td>
+      <td>2777.222310</td>
+      <td>-2763.996285</td>
+      <td>152.126289</td>
+      <td>283.000000</td>
+      <td>1076.800000</td>
+      <td>389.200000</td>
+      <td>1251.900000</td>
+      <td>1073.300000</td>
+      <td>961.500000</td>
+      <td>36000.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>NaN</td>
+      <td>-1300.0</td>
+      <td>400.0</td>
+      <td>3988.611155</td>
+      <td>-1145.994428</td>
+      <td>388.954738</td>
+      <td>39000.000000</td>
+      <td>39900.000000</td>
+      <td>40800.000000</td>
+      <td>6028.110948</td>
+      <td>42950.000000</td>
+      <td>37850.000000</td>
+      <td>70275.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>NaN</td>
+      <td>-1300.0</td>
+      <td>400.0</td>
+      <td>5200.000000</td>
+      <td>472.007430</td>
+      <td>3747.987596</td>
+      <td>186600.000000</td>
+      <td>259300.000000</td>
+      <td>361900.000000</td>
+      <td>651400.000000</td>
+      <td>603300.000000</td>
+      <td>515400.000000</td>
+      <td>546800.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="ebitda-ajustado-por-ano">
+<h3>EBITDA ajustado por año<a class="headerlink" href="#ebitda-ajustado-por-ano" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">temp</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;EBITDA_Ajustado&#39;</span><span class="p">)</span>
+
+<span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Año&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Año&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;EBITDA_Ajustado&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;Año&#39;</span><span class="p">,</span>  <span class="n">palette</span><span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boxplot del EBITDA Ajustado por Año&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;EBITDA Ajustado&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1200x600 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="_images/c9b11536b459b67667082833c749e8e97b08b5f9066bc0a9d77aec806fae7e8d.png" src="_images/c9b11536b459b67667082833c749e8e97b08b5f9066bc0a9d77aec806fae7e8d.png" />
+</div>
+</div>
+<p>En cuanto al 2013 y 2014 solo se tiene un registro correspondiente a Funai Electric Co Ltd, de un EBITDA ajustado de -1.32M USD y 0.37M USD respectivamente. Para 2015 y 2016, el número de registro aumenta a 2, la medidas del EBITDA ajustado muestran una mejora significativa con valores positivos debido al nuevo registro de Skyworth Group Ltd.</p>
+<p>A partir de 2017, aumenta el número de datos, y por tanto refleja una mayor diversidad en el rendimiento de las empresas. LLama la atención como el rango del EBITDA ajustado comienza a tomar valores negativos bastante pequeños a partir del 2020 (-500M, 361900M USD), año en el que se registró una mediana 389.2M USD, esto sugiere que algunas empresas enfrentaron dificultades mientras que otras tuvieron un buen desempeño.</p>
+<p>También se pueden notar ciertos datos ‘atípicos’ bastante alejados de 2017 a 2023 correspondientes al EBITDA ajustado de Nintendo. Veamos ahora una representación gráfica del comportamiento del EBITDA ajustado para cada empresa según los años.</p>
+</section>
+<section id="ebitda-ajustado-promedio-por-empresa">
+<h3>EBITDA ajustado promedio por empresa<a class="headerlink" href="#ebitda-ajustado-promedio-por-empresa" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="mi">13</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;EBITDA Ajustado Promedio&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">([</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;EBITDA Ajustado Promedio&#39;</span><span class="p">]],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+            <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;EBITDA Ajustado Promedio&#39;</span><span class="p">},</span> 
+            <span class="n">xticklabels</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">],</span> 
+            <span class="n">vmin</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;EBITDA Ajustado Promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> 
+            <span class="n">vmax</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;EBITDA Ajustado Promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Promedio de EBITDA Ajustado por Empresa&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a46c1d71be3687a6b023dbf5e1a9b5e238ecd480f1d2b9ca15208e122412fb72.png" src="_images/a46c1d71be3687a6b023dbf5e1a9b5e238ecd480f1d2b9ca15208e122412fb72.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;EBITDA Ajustado Promedio&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>EBITDA Ajustado Promedio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>Nintendo Co Ltd</td>
+      <td>446385.714286</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Sharp Corp/Japan</td>
+      <td>124585.714286</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Nikon Corp</td>
+      <td>69042.857143</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>33528.571429</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>LG Electronics Inc</td>
+      <td>4873.640267</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>1164.587500</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Logitech International SA</td>
+      <td>641.228571</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Skyworth Group Ltd</td>
+      <td>362.708718</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>230.550194</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>TCL Electronics Holdings</td>
+      <td>198.508950</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>GoPro Inc</td>
+      <td>15.500000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Konka Group Co Ltd</td>
+      <td>-103.801649</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>-1222.222222</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Nintendo Co Ltd, la multinacional japonesa famosa por sus videojuegos y consolas, presenta el promedio más alto de EBITDA ajustado, esto ya esperaba debido a que los datos atípicos vistos en el boxplot corresponden a esta empresa, seguido de Sharp Corp/Japan (124585.7M USD), multinacional japonesa conocida por su innovación en tecnología y electrónica de consumo,  y Nikon Corp (69042.8M USD), otra multinacional japonesa conocida principalmente por su fabricación de cámaras y equipos ópticos. Es decir, las tres principales empresas con EBITDA ajustado más altos son japonesas. Por otro lado, empresas como Konka Group Co Ltd (China) y Funai Electric (Japón), tienen este indicador negativo (- 103.81M USD y -1222.2M USD respectivamente), es decir, en promedio los ingresos operativos no cubren los costos operativos ajustados y pueden reflejar problemas financieros o estructurales significativos dentro de estas empresas.</p>
+</section>
+<section id="ebitda-ajustado-promedio-por-pais">
+<h3>EBITDA ajustado promedio por país<a class="headerlink" href="#ebitda-ajustado-promedio-por-pais" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">14</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;PAIS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;EBITDA Ajustado Promedio&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">([</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;EBITDA Ajustado Promedio&#39;</span><span class="p">]],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+            <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;EBITDA Ajustado Promedio&#39;</span><span class="p">},</span> 
+            <span class="n">xticklabels</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;PAIS&#39;</span><span class="p">],</span> 
+            <span class="n">vmin</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;EBITDA Ajustado Promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> 
+            <span class="n">vmax</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;EBITDA Ajustado Promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Promedio de EBITDA Ajustado por país&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09ba3e382392b4e701b1e0cb3324810bc6e8bcce001d4e61c7a75dbec0afe2d5.png" src="_images/09ba3e382392b4e701b1e0cb3324810bc6e8bcce001d4e61c7a75dbec0afe2d5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PAIS</th>
+      <th>EBITDA Ajustado Promedio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CH</td>
+      <td>63.374272</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>HK</td>
+      <td>304.466287</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>JP</td>
+      <td>87517.083333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>KS</td>
+      <td>4873.640267</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>SW</td>
+      <td>641.228571</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>US</td>
+      <td>678.481250</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Las empresas de Japón presentan el EBITDA ajustado promedio más alto (87517M USD), esto indica un desempeño financiero robusto en comparación con otros países, seguido de Corea del Sur (4873.6M) con LG Electronics Inc. Hong Kong y China presentan los indicadores más bajos, con 304.4M y 65.37M respectivamente.</p>
+</section>
+<section id="ebitda-ajustado-por-empresa">
+<h3>EBITDA ajustado por empresa<a class="headerlink" href="#ebitda-ajustado-por-empresa" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_melted</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="mi">13</span><span class="p">]</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">)</span>
+
+<span class="n">mediana_por_año</span> <span class="o">=</span> <span class="n">df_melted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)[</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_melted</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mediana_por_año</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mediana&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comportamiento del EBITDA Ajustado por Empresa&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;EBITDA Ajustado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Empresa&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ddaf4b4ce5cb559088c020d9f84dc8dd4be69e526fa33f60592dfaa47c5c6bb3.png" src="_images/ddaf4b4ce5cb559088c020d9f84dc8dd4be69e526fa33f60592dfaa47c5c6bb3.png" />
+</div>
+</div>
+<p>Con esta representación se pueden observar la cantidad de datos faltantes por empresa y el año, por ejemplo, de LG Electronics Inc, solo se tiene registros de 2017 a 2023. Registros completos en todas las empresas, solo se tienen entre 2018 y 2023. Se podría trabajar con solo esos años o aplicar algún modelo para la imputación de datos faltantes, como ARIMA.</p>
+<p>Se puede notar la gran diferencia en los índices de las distintas empresas, sobresaliendo siempre las ya mencionadas en análisis anteriores como Nintendo, Sharp Corp, Nikon y Casio, todas empresas japonesas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">,</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">2021</span><span class="p">,</span> <span class="mi">2022</span><span class="p">,</span> <span class="mi">2023</span><span class="p">,</span> <span class="mi">2024</span><span class="p">]</span>
+<span class="n">df_melted</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="p">[</span><span class="n">interes</span><span class="p">]</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;EBITDA ajustado&#39;</span><span class="p">)</span>
+
+<span class="n">mediana_por_año</span> <span class="o">=</span> <span class="n">df_melted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)[</span><span class="s1">&#39;EBITDA ajustado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;EBITDA ajustado&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_melted</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;EBITDA ajustado&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mediana_por_año</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mediana&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comportamiento del EBITDA ajustado por Empresa de 2017 a 2024&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;EBITDA ajustado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Empresa&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e3457c45c2d679de1c5dabed83ae4092c13de8f1b17df742685794d74063affe.png" src="_images/e3457c45c2d679de1c5dabed83ae4092c13de8f1b17df742685794d74063affe.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">missing_data</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="p">[</span><span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2024</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing_data</span><span class="p">[[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">,</span> <span class="s1">&#39;PAIS&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                           EMPRESA PAIS
+0   Hisense Visual Technology Co L   CH
+1               Konka Group Co Ltd   CH
+2         TCL Electronics Holdings   HK
+3               Skyworth Group Ltd   HK
+5            Funai Electric Co Ltd   JP
+9               LG Electronics Inc   KS
+11                       GoPro Inc   US
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">missing_data</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="p">[</span><span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2017</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing_data</span><span class="p">[[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">,</span> <span class="s1">&#39;PAIS&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                      EMPRESA PAIS
+4       Casio Computer Co Ltd   JP
+6                  Nikon Corp   JP
+7             Nintendo Co Ltd   JP
+8            Sharp Corp/Japan   JP
+12  Logitech International SA   SW
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aquí nos centramos en los años con más registros, es decir, del 2017 al 2024, debido a que el porcentaje de valores faltantes para años anteriores es alto, llegando a ser incluso a ser del 92,3%. Para abordar aquellos pocos datos faltantes se realizará imputación de datos con la mediana o media en las columnas del 2017, 2022, 2023 y 2024, sin embargo, parece que se realizará con la mediana debido a la distribución de los datos observada en los boxplot.</p>
+</section>
+<section id="pruebas-de-normalidad">
+<h3>Pruebas de normalidad<a class="headerlink" href="#pruebas-de-normalidad" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para 2017</span>
+<span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2017</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No se puede rechazar la hipótesis nula: los datos parecen tener una distribución normal.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Se rechaza la hipótesis nula: los datos no siguen una distribución normal.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Se rechaza la hipótesis nula: los datos no siguen una distribución normal.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para 2022</span>
+<span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2022</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No se puede rechazar la hipótesis nula: los datos parecen tener una distribución normal.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Se rechaza la hipótesis nula: los datos no siguen una distribución normal.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Se rechaza la hipótesis nula: los datos no siguen una distribución normal.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para 2023</span>
+<span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2023</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No se puede rechazar la hipótesis nula: los datos parecen tener una distribución normal.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Se rechaza la hipótesis nula: los datos no siguen una distribución normal.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Se rechaza la hipótesis nula: los datos no siguen una distribución normal.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para 2024</span>
+<span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2024</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No se puede rechazar la hipótesis nula: los datos parecen tener una distribución normal.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Se rechaza la hipótesis nula: los datos no siguen una distribución normal.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Se rechaza la hipótesis nula: los datos no siguen una distribución normal.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2017</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2017</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+<span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2022</span><span class="p">]</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2022</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2022</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+<span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2023</span><span class="p">]</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2023</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2023</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+<span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2024</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">eaj_usd</span><span class="p">[</span><span class="mi">2024</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      36000.0
+1      36000.0
+2      36000.0
+3      36000.0
+4      26100.0
+5      36000.0
+6      78400.0
+7     546800.0
+8      45900.0
+9      36000.0
+10      1430.5
+11     36000.0
+12       698.7
+Name: 2024, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eaj_usd</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2014</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">2016</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eaj_usd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>PAIS</th>
+      <th>MARGEN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>185.616115</td>
+      <td>88.400147</td>
+      <td>107.989931</td>
+      <td>220.313001</td>
+      <td>244.917316</td>
+      <td>343.572312</td>
+      <td>423.042535</td>
+      <td>NaN</td>
+      <td>CH</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Konka Group Co Ltd</td>
+      <td>72.855065</td>
+      <td>-36.343965</td>
+      <td>4.053241</td>
+      <td>-88.038206</td>
+      <td>-127.953449</td>
+      <td>-266.090350</td>
+      <td>-285.093882</td>
+      <td>NaN</td>
+      <td>CH</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>TCL Electronics Holdings</td>
+      <td>118.636462</td>
+      <td>137.939661</td>
+      <td>198.120465</td>
+      <td>230.434746</td>
+      <td>97.339054</td>
+      <td>363.749444</td>
+      <td>243.342819</td>
+      <td>NaN</td>
+      <td>HK</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Skyworth Group Ltd</td>
+      <td>262.039650</td>
+      <td>214.737259</td>
+      <td>288.278487</td>
+      <td>318.436737</td>
+      <td>525.033941</td>
+      <td>407.449437</td>
+      <td>421.950905</td>
+      <td>NaN</td>
+      <td>HK</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>NaN</td>
+      <td>39000.000000</td>
+      <td>39900.000000</td>
+      <td>40800.000000</td>
+      <td>26400.000000</td>
+      <td>33400.000000</td>
+      <td>29100.000000</td>
+      <td>26100.0</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>-2700.000000</td>
+      <td>-8600.000000</td>
+      <td>1700.000000</td>
+      <td>-500.000000</td>
+      <td>800.000000</td>
+      <td>1073.300000</td>
+      <td>961.500000</td>
+      <td>NaN</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>NaN</td>
+      <td>97200.000000</td>
+      <td>93900.000000</td>
+      <td>52100.000000</td>
+      <td>2000.000000</td>
+      <td>71600.000000</td>
+      <td>88100.000000</td>
+      <td>78400.0</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Nintendo Co Ltd</td>
+      <td>NaN</td>
+      <td>186600.000000</td>
+      <td>259300.000000</td>
+      <td>361900.000000</td>
+      <td>651400.000000</td>
+      <td>603300.000000</td>
+      <td>515400.000000</td>
+      <td>546800.0</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Sharp Corp/Japan</td>
+      <td>NaN</td>
+      <td>166200.000000</td>
+      <td>156200.000000</td>
+      <td>127500.000000</td>
+      <td>155100.000000</td>
+      <td>157100.000000</td>
+      <td>64100.000000</td>
+      <td>45900.0</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>LG Electronics Inc</td>
+      <td>3747.987596</td>
+      <td>4275.976647</td>
+      <td>4244.107380</td>
+      <td>5560.002726</td>
+      <td>6028.110948</td>
+      <td>5075.533038</td>
+      <td>5183.763537</td>
+      <td>NaN</td>
+      <td>KS</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Garmin Ltd</td>
+      <td>769.700000</td>
+      <td>874.100000</td>
+      <td>1076.800000</td>
+      <td>1209.100000</td>
+      <td>1408.900000</td>
+      <td>1230.300000</td>
+      <td>1317.300000</td>
+      <td>1430.5</td>
+      <td>US</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>GoPro Inc</td>
+      <td>-92.700000</td>
+      <td>-29.700000</td>
+      <td>51.100000</td>
+      <td>34.300000</td>
+      <td>142.800000</td>
+      <td>63.300000</td>
+      <td>-60.600000</td>
+      <td>NaN</td>
+      <td>US</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Logitech International SA</td>
+      <td>NaN</td>
+      <td>283.000000</td>
+      <td>343.800000</td>
+      <td>389.200000</td>
+      <td>1251.900000</td>
+      <td>916.300000</td>
+      <td>605.700000</td>
+      <td>698.7</td>
+      <td>SW</td>
+      <td>AJ</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="imputacion-con-iterativeimputer">
+<h3>Imputación con IterativeImputer()<a class="headerlink" href="#imputacion-con-iterativeimputer" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iterative_imputer</span> <span class="o">=</span> <span class="n">IterativeImputer</span><span class="p">()</span>
+<span class="n">numeric_columns</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;number&#39;</span><span class="p">)</span>
+
+
+<span class="n">eaj_usd_imputed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iterative_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">numeric_columns</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">numeric_columns</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="n">eaj_usd</span><span class="p">[</span><span class="n">numeric_columns</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">eaj_usd_imputed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eaj_usd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>PAIS</th>
+      <th>MARGEN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>185.616115</td>
+      <td>88.400147</td>
+      <td>107.989931</td>
+      <td>220.313001</td>
+      <td>244.917316</td>
+      <td>343.572312</td>
+      <td>423.042535</td>
+      <td>472.830372</td>
+      <td>CH</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Konka Group Co Ltd</td>
+      <td>72.855065</td>
+      <td>-36.343965</td>
+      <td>4.053241</td>
+      <td>-88.038206</td>
+      <td>-127.953449</td>
+      <td>-266.090350</td>
+      <td>-285.093882</td>
+      <td>-264.908523</td>
+      <td>CH</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>TCL Electronics Holdings</td>
+      <td>118.636462</td>
+      <td>137.939661</td>
+      <td>198.120465</td>
+      <td>230.434746</td>
+      <td>97.339054</td>
+      <td>363.749444</td>
+      <td>243.342819</td>
+      <td>295.315798</td>
+      <td>HK</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Skyworth Group Ltd</td>
+      <td>262.039650</td>
+      <td>214.737259</td>
+      <td>288.278487</td>
+      <td>318.436737</td>
+      <td>525.033941</td>
+      <td>407.449437</td>
+      <td>421.950905</td>
+      <td>493.861863</td>
+      <td>HK</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>28418.849742</td>
+      <td>39000.000000</td>
+      <td>39900.000000</td>
+      <td>40800.000000</td>
+      <td>26400.000000</td>
+      <td>33400.000000</td>
+      <td>29100.000000</td>
+      <td>26100.000000</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>-2700.000000</td>
+      <td>-8600.000000</td>
+      <td>1700.000000</td>
+      <td>-500.000000</td>
+      <td>800.000000</td>
+      <td>1073.300000</td>
+      <td>961.500000</td>
+      <td>4630.838031</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>53868.363878</td>
+      <td>97200.000000</td>
+      <td>93900.000000</td>
+      <td>52100.000000</td>
+      <td>2000.000000</td>
+      <td>71600.000000</td>
+      <td>88100.000000</td>
+      <td>78400.000000</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Nintendo Co Ltd</td>
+      <td>237365.454128</td>
+      <td>186600.000000</td>
+      <td>259300.000000</td>
+      <td>361900.000000</td>
+      <td>651400.000000</td>
+      <td>603300.000000</td>
+      <td>515400.000000</td>
+      <td>546800.000000</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Sharp Corp/Japan</td>
+      <td>110540.347549</td>
+      <td>166200.000000</td>
+      <td>156200.000000</td>
+      <td>127500.000000</td>
+      <td>155100.000000</td>
+      <td>157100.000000</td>
+      <td>64100.000000</td>
+      <td>45900.000000</td>
+      <td>JP</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>LG Electronics Inc</td>
+      <td>3747.987596</td>
+      <td>4275.976647</td>
+      <td>4244.107380</td>
+      <td>5560.002726</td>
+      <td>6028.110948</td>
+      <td>5075.533038</td>
+      <td>5183.763537</td>
+      <td>5091.207875</td>
+      <td>KS</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Garmin Ltd</td>
+      <td>769.700000</td>
+      <td>874.100000</td>
+      <td>1076.800000</td>
+      <td>1209.100000</td>
+      <td>1408.900000</td>
+      <td>1230.300000</td>
+      <td>1317.300000</td>
+      <td>1430.500000</td>
+      <td>US</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>GoPro Inc</td>
+      <td>-92.700000</td>
+      <td>-29.700000</td>
+      <td>51.100000</td>
+      <td>34.300000</td>
+      <td>142.800000</td>
+      <td>63.300000</td>
+      <td>-60.600000</td>
+      <td>50.304311</td>
+      <td>US</td>
+      <td>AJ</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Logitech International SA</td>
+      <td>351.137348</td>
+      <td>283.000000</td>
+      <td>343.800000</td>
+      <td>389.200000</td>
+      <td>1251.900000</td>
+      <td>916.300000</td>
+      <td>605.700000</td>
+      <td>698.700000</td>
+      <td>SW</td>
+      <td>AJ</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Se decidió conservar solo aquellas columnas que tenían menos del 60% de datos faltantes y se realizó con IterativeImputer de scikit-learn, el cual realiza imputaciones múltiples usando modelos predictivos.</p>
+</section>
+<section id="ebitda-por-empresa-sin-datos-faltantes">
+<h3>EBITDA por empresa sin datos faltantes<a class="headerlink" href="#ebitda-por-empresa-sin-datos-faltantes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">,</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">2021</span><span class="p">,</span> <span class="mi">2022</span><span class="p">,</span> <span class="mi">2023</span><span class="p">,</span> <span class="mi">2024</span><span class="p">]</span>
+<span class="n">df_melted</span> <span class="o">=</span> <span class="n">eaj_usd</span><span class="p">[</span><span class="n">interes</span><span class="p">]</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">)</span>
+
+<span class="n">mediana_por_año</span> <span class="o">=</span> <span class="n">df_melted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)[</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_melted</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mediana_por_año</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mediana&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comportamiento del EBITDA ajustado por Empresa de 2017 a 2024&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Empresa&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f9e32c0857f5d6ce8ef4fbb95ba6883e5dd0bf37888c2b2a72ac0da4a8ac5653.png" src="_images/f9e32c0857f5d6ce8ef4fbb95ba6883e5dd0bf37888c2b2a72ac0da4a8ac5653.png" />
+</div>
+</div>
+<p>Y este es la nueva distribución del EBITDA ajustado luego de imputar datos faltantes.</p>
+</section>
+</section>
+<section id="id2">
+<h2>Margen EBITDA<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Ahora revisemos el subconjunto de datos relacionado al margen EBITDA. Para este no es necesario realizar la conversión de moneda debido a que se expresa como un porcentaje de los ingreso, es decir, es una proporción y no un valor absoluto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_per</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>2013</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>PAIS</th>
+      <th>MARGEN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12.4</td>
+      <td>13.4</td>
+      <td>14.5</td>
+      <td>11.6</td>
+      <td>13.2</td>
+      <td>11.0</td>
+      <td>9.7</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>-0.7</td>
+      <td>0.2</td>
+      <td>2.4</td>
+      <td>-3.6</td>
+      <td>-2.0</td>
+      <td>-6.6</td>
+      <td>1.6</td>
+      <td>-0.6</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Garmin Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24.7</td>
+      <td>26.1</td>
+      <td>28.7</td>
+      <td>28.9</td>
+      <td>28.3</td>
+      <td>25.3</td>
+      <td>25.2</td>
+      <td>25.3</td>
+      <td>US</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>TCL Electronics Holdings</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2.3</td>
+      <td>2.4</td>
+      <td>3.3</td>
+      <td>3.5</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>2.4</td>
+      <td>NaN</td>
+      <td>HK</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3.8</td>
+      <td>1.7</td>
+      <td>2.2</td>
+      <td>3.9</td>
+      <td>3.4</td>
+      <td>5.0</td>
+      <td>5.6</td>
+      <td>NaN</td>
+      <td>CH</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Nikon Corp</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>13.5</td>
+      <td>13.2</td>
+      <td>8.8</td>
+      <td>0.5</td>
+      <td>13.3</td>
+      <td>14.0</td>
+      <td>10.9</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>LG Electronics Inc</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.9</td>
+      <td>7.7</td>
+      <td>7.9</td>
+      <td>11.3</td>
+      <td>9.3</td>
+      <td>7.8</td>
+      <td>8.0</td>
+      <td>NaN</td>
+      <td>KS</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Logitech International SA</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>11.0</td>
+      <td>12.3</td>
+      <td>13.1</td>
+      <td>23.8</td>
+      <td>16.7</td>
+      <td>13.3</td>
+      <td>16.3</td>
+      <td>SW</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Nintendo Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>17.7</td>
+      <td>21.6</td>
+      <td>27.7</td>
+      <td>37.0</td>
+      <td>35.6</td>
+      <td>32.2</td>
+      <td>32.7</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>GoPro Inc</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-7.9</td>
+      <td>-2.6</td>
+      <td>4.3</td>
+      <td>3.8</td>
+      <td>12.3</td>
+      <td>5.8</td>
+      <td>-6.0</td>
+      <td>NaN</td>
+      <td>US</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Konka Group Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.6</td>
+      <td>-0.5</td>
+      <td>0.1</td>
+      <td>-1.2</td>
+      <td>-1.7</td>
+      <td>-6.0</td>
+      <td>-11.3</td>
+      <td>NaN</td>
+      <td>CH</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Skyworth Group Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.8</td>
+      <td>8.6</td>
+      <td>4.8</td>
+      <td>3.6</td>
+      <td>5.3</td>
+      <td>5.5</td>
+      <td>6.6</td>
+      <td>5.1</td>
+      <td>4.3</td>
+      <td>NaN</td>
+      <td>HK</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Sharp Corp/Japan</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.8</td>
+      <td>6.5</td>
+      <td>5.6</td>
+      <td>6.4</td>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>2.0</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Al igual que con el EBITDA ajustado, se nota una gran cantidad de datos faltantes. La distribución por países es la misma que el ajustado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_per</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>2013</th>
+      <th>2014</th>
+      <th>2015</th>
+      <th>2016</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>PAIS</th>
+      <th>MARGEN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>13</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.00000</td>
+      <td>2.000000</td>
+      <td>8.00000</td>
+      <td>13.000000</td>
+      <td>13.000000</td>
+      <td>13.000000</td>
+      <td>13.000000</td>
+      <td>12.000000</td>
+      <td>12.000000</td>
+      <td>6.000000</td>
+      <td>13</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>13</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>NaN</td>
+      <td>-0.7</td>
+      <td>0.2</td>
+      <td>4.60000</td>
+      <td>2.500000</td>
+      <td>4.27500</td>
+      <td>7.169231</td>
+      <td>9.261538</td>
+      <td>9.600000</td>
+      <td>10.730769</td>
+      <td>11.008333</td>
+      <td>8.433333</td>
+      <td>16.150000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3.11127</td>
+      <td>8.626703</td>
+      <td>9.43576</td>
+      <td>8.949151</td>
+      <td>8.415218</td>
+      <td>9.559986</td>
+      <td>11.947621</td>
+      <td>10.956315</td>
+      <td>12.067487</td>
+      <td>11.198527</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>NaN</td>
+      <td>-0.7</td>
+      <td>0.2</td>
+      <td>2.40000</td>
+      <td>-3.600000</td>
+      <td>-7.90000</td>
+      <td>-6.600000</td>
+      <td>0.100000</td>
+      <td>-1.200000</td>
+      <td>-1.700000</td>
+      <td>-6.000000</td>
+      <td>-11.300000</td>
+      <td>2.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>NaN</td>
+      <td>-0.7</td>
+      <td>0.2</td>
+      <td>3.50000</td>
+      <td>-0.550000</td>
+      <td>0.70000</td>
+      <td>1.700000</td>
+      <td>3.300000</td>
+      <td>3.800000</td>
+      <td>1.000000</td>
+      <td>5.075000</td>
+      <td>2.475000</td>
+      <td>10.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>NaN</td>
+      <td>-0.7</td>
+      <td>0.2</td>
+      <td>4.60000</td>
+      <td>2.500000</td>
+      <td>3.05000</td>
+      <td>6.800000</td>
+      <td>6.500000</td>
+      <td>5.600000</td>
+      <td>6.600000</td>
+      <td>7.050000</td>
+      <td>6.800000</td>
+      <td>13.600000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>NaN</td>
+      <td>-0.7</td>
+      <td>0.2</td>
+      <td>5.70000</td>
+      <td>5.550000</td>
+      <td>5.32500</td>
+      <td>12.400000</td>
+      <td>13.200000</td>
+      <td>13.100000</td>
+      <td>12.300000</td>
+      <td>14.150000</td>
+      <td>13.475000</td>
+      <td>23.050000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>NaN</td>
+      <td>-0.7</td>
+      <td>0.2</td>
+      <td>6.80000</td>
+      <td>8.600000</td>
+      <td>24.70000</td>
+      <td>26.100000</td>
+      <td>28.700000</td>
+      <td>28.900000</td>
+      <td>37.000000</td>
+      <td>35.600000</td>
+      <td>32.200000</td>
+      <td>32.700000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="margen-ebitda-por-ano">
+<h3>Margen EBITDA por año<a class="headerlink" href="#margen-ebitda-por-ano" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">temp</span> <span class="o">=</span> <span class="n">e_per</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Margen&#39;</span><span class="p">)</span>
+
+<span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Año&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Año&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Margen&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;Año&#39;</span><span class="p">,</span>  <span class="n">palette</span><span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boxplot del margen ebitda por Año&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Margen&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1200x600 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="_images/e6982d17f63062e6ac175d2db6d1840933bd24320a978fbcfa8febe44604e20e.png" src="_images/e6982d17f63062e6ac175d2db6d1840933bd24320a978fbcfa8febe44604e20e.png" />
+</div>
+</div>
+<p>Aquí se nota la presencia de datos atípicos por debajo de la mediana, situación que no se veía en el EBITDA ajustado. También parece haber un aumento en margen EBITDA de lo que va del 2024, el cual presenta un rango de valores mayor al de otros años. Debido a que ahora se habla de porcentajes, es más fácil visualizar la distribución por año dado que los datos atípicos no están tan alejados como en el caso del ajustado.</p>
+<p>Se observa una mediana del margen EBITDA similar de 2018 a 2023, que va desde 5.6% en 2020 hasta 7.05% en 2022. Nuevamente, de 2013 a 2014 no es visualizar nada debido a que solo hay una observación de -0.7 y 0.2 respectivamente. En 2023 se nota el mayor rango de valores de este margen, es decir, una mayor variabilidad que podría deberse a cambios en el mercado, eventos económicos, ajustes contables, entre otros factores.</p>
+</section>
+<section id="promedio-de-margen-ebitda-por-empresa">
+<h3>Promedio de margen EBITDA por empresa<a class="headerlink" href="#promedio-de-margen-ebitda-por-empresa" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">e_per</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="mi">13</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA promedio&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">([</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Margen EBITDA promedio&#39;</span><span class="p">]],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+            <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;EBITDA % Promedio&#39;</span><span class="p">},</span> 
+            <span class="n">xticklabels</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">],</span> 
+            <span class="n">vmin</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Margen EBITDA promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> 
+            <span class="n">vmax</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Margen EBITDA promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Promedio de margen EBITDA por Empresa&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06652e12f70749378e80847edbec09d4b0b361320a3e269807354b217b020869.png" src="_images/06652e12f70749378e80847edbec09d4b0b361320a3e269807354b217b020869.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;Margen EBITDA promedio&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>Margen EBITDA promedio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>Nintendo Co Ltd</td>
+      <td>29.214286</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>26.562500</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Logitech International SA</td>
+      <td>15.214286</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>12.257143</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Nikon Corp</td>
+      <td>10.600000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Podemos ver que la empresa con mayor EBITDA ajustado reaparece como la empresa con mayor margen EBITDA, sugiriendo no solo eficiencia en su operación, sino también que es una empresa rentable, estable y sostenible. Aparece también, como el segundo margen EBITDA más alto, Garmin Ltd, que si bien obtuvo un EBITDA ajustado alto, no fue de los tres primeros, pero esto podría dar indicios de que a pesar de los ajustes, la empresa sigue siendo operativamente fuerte y eficiente.</p>
+</section>
+<section id="promedio-de-margen-ebitda-por-pais">
+<h3>Promedio de margen EBITDA por país<a class="headerlink" href="#promedio-de-margen-ebitda-por-pais" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">e_per</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">14</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;PAIS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA promedio&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">([</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Margen EBITDA promedio&#39;</span><span class="p">]],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+            <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;EBITDA % Promedio&#39;</span><span class="p">},</span> 
+            <span class="n">xticklabels</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;PAIS&#39;</span><span class="p">],</span> 
+            <span class="n">vmin</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Margen EBITDA promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> 
+            <span class="n">vmax</span><span class="o">=</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Margen EBITDA promedio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Promedio de margen EBITDA por país&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2ffa6bf9b7165f341f25a784e1c5025951960c3895fb91ecae9222b34ddb74c5.png" src="_images/2ffa6bf9b7165f341f25a784e1c5025951960c3895fb91ecae9222b34ddb74c5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;Margen EBITDA promedio&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PAIS</th>
+      <th>Margen EBITDA promedio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>US</td>
+      <td>15.468750</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>SW</td>
+      <td>15.214286</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>KS</td>
+      <td>8.414286</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>JP</td>
+      <td>7.055833</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>HK</td>
+      <td>4.716667</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>CH</td>
+      <td>0.471429</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>A diferencia del EBITDA ajustado, las empresas con mayor margen EBITDA están en Estados Unidos y Suiza (15.46% y 15.21% respectivamente), y no en Japón (7.05%) como se hubiese podido esperar. Hong Kong y China se mantienen como los países con valores menores de este estimador.</p>
+</section>
+<section id="id3">
+<h3>Imputación con IterativeImputer<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Al igual con el EBITDA ajustado, se eliminarán las mismas columnas y se realizará imputación con IterativeImputer()</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guardar</span> <span class="o">=</span> <span class="n">e_per</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_per</span> <span class="o">=</span> <span class="n">e_per</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2014</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">2016</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_columns</span> <span class="o">=</span> <span class="n">e_per</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;number&#39;</span><span class="p">)</span>
+
+<span class="n">iterative_imputer</span> <span class="o">=</span> <span class="n">IterativeImputer</span><span class="p">()</span>
+<span class="n">e_per_imputed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iterative_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">numeric_columns</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">numeric_columns</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">numeric_columns</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">e_per</span><span class="p">[</span><span class="n">numeric_columns</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">e_per_imputed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_per</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>EMPRESA</th>
+      <th>2017</th>
+      <th>2018</th>
+      <th>2019</th>
+      <th>2020</th>
+      <th>2021</th>
+      <th>2022</th>
+      <th>2023</th>
+      <th>2024</th>
+      <th>PAIS</th>
+      <th>MARGEN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>7.136587</td>
+      <td>12.4</td>
+      <td>13.4</td>
+      <td>14.5</td>
+      <td>11.6</td>
+      <td>13.200000</td>
+      <td>11.00000</td>
+      <td>9.700000</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>-2.000000</td>
+      <td>-6.6</td>
+      <td>1.6</td>
+      <td>-0.6</td>
+      <td>1.0</td>
+      <td>6.442368</td>
+      <td>2.29071</td>
+      <td>8.045026</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Garmin Ltd</td>
+      <td>24.700000</td>
+      <td>26.1</td>
+      <td>28.7</td>
+      <td>28.9</td>
+      <td>28.3</td>
+      <td>25.300000</td>
+      <td>25.20000</td>
+      <td>25.300000</td>
+      <td>US</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>TCL Electronics Holdings</td>
+      <td>2.300000</td>
+      <td>2.4</td>
+      <td>3.3</td>
+      <td>3.5</td>
+      <td>1.0</td>
+      <td>4.000000</td>
+      <td>2.40000</td>
+      <td>6.257044</td>
+      <td>HK</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>3.800000</td>
+      <td>1.7</td>
+      <td>2.2</td>
+      <td>3.9</td>
+      <td>3.4</td>
+      <td>5.000000</td>
+      <td>5.60000</td>
+      <td>11.643285</td>
+      <td>CH</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Nikon Corp</td>
+      <td>13.626581</td>
+      <td>13.5</td>
+      <td>13.2</td>
+      <td>8.8</td>
+      <td>0.5</td>
+      <td>13.300000</td>
+      <td>14.00000</td>
+      <td>10.900000</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>LG Electronics Inc</td>
+      <td>6.900000</td>
+      <td>7.7</td>
+      <td>7.9</td>
+      <td>11.3</td>
+      <td>9.3</td>
+      <td>7.800000</td>
+      <td>8.00000</td>
+      <td>12.199473</td>
+      <td>KS</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Logitech International SA</td>
+      <td>3.801721</td>
+      <td>11.0</td>
+      <td>12.3</td>
+      <td>13.1</td>
+      <td>23.8</td>
+      <td>16.700000</td>
+      <td>13.30000</td>
+      <td>16.300000</td>
+      <td>SW</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Nintendo Co Ltd</td>
+      <td>15.344055</td>
+      <td>17.7</td>
+      <td>21.6</td>
+      <td>27.7</td>
+      <td>37.0</td>
+      <td>35.600000</td>
+      <td>32.20000</td>
+      <td>32.700000</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>GoPro Inc</td>
+      <td>-7.900000</td>
+      <td>-2.6</td>
+      <td>4.3</td>
+      <td>3.8</td>
+      <td>12.3</td>
+      <td>5.800000</td>
+      <td>-6.00000</td>
+      <td>0.071051</td>
+      <td>US</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Konka Group Co Ltd</td>
+      <td>1.600000</td>
+      <td>-0.5</td>
+      <td>0.1</td>
+      <td>-1.2</td>
+      <td>-1.7</td>
+      <td>-6.000000</td>
+      <td>-11.30000</td>
+      <td>-0.469696</td>
+      <td>CH</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Skyworth Group Ltd</td>
+      <td>4.800000</td>
+      <td>3.6</td>
+      <td>5.3</td>
+      <td>5.5</td>
+      <td>6.6</td>
+      <td>5.100000</td>
+      <td>4.30000</td>
+      <td>10.857723</td>
+      <td>HK</td>
+      <td>PER</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Sharp Corp/Japan</td>
+      <td>-1.956156</td>
+      <td>6.8</td>
+      <td>6.5</td>
+      <td>5.6</td>
+      <td>6.4</td>
+      <td>6.300000</td>
+      <td>2.50000</td>
+      <td>2.000000</td>
+      <td>JP</td>
+      <td>PER</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="margen-ebitda-por-empresa-sin-datos-faltantes">
+<h3>Margen EBITDA por empresa sin datos faltantes<a class="headerlink" href="#margen-ebitda-por-empresa-sin-datos-faltantes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">guardar</span> <span class="o">=</span> <span class="n">guardar</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2014</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">2016</span><span class="p">])</span>
+
+<span class="n">df_melted</span> <span class="o">=</span> <span class="n">guardar</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="mi">9</span><span class="p">]</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">)</span>
+
+<span class="n">mediana_por_año</span> <span class="o">=</span> <span class="n">df_melted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)[</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_melted</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mediana_por_año</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mediana&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comportamiento del Margen EBITDA por Empresa&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Empresa&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/71606b40cd9a1ab3208cf87a624707b0c3e5ae47a4a0b80e63e77a855200d083.png" src="_images/71606b40cd9a1ab3208cf87a624707b0c3e5ae47a4a0b80e63e77a855200d083.png" />
+</div>
+</div>
+<p>Este corresponde al mergen de EBITDA antes de la imputación de datos, se pueden observar varios datos faltantes sobre todo para 2017 y 2024, de igual manera en con el EBITDA ajustado.</p>
+<p>También llama la atención como 2021 tuvo varios picos ascendentes para empresas como Nintendo, Logitech y GoPro, y descendentes para empresas como Nikon.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_melted</span> <span class="o">=</span> <span class="n">e_per</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="mi">9</span><span class="p">]</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">)</span>
+
+<span class="n">mediana_por_año</span> <span class="o">=</span> <span class="n">df_melted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)[</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_melted</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;EMPRESA&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Año&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mediana_por_año</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mediana&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comportamiento del Margen EBITDA por Empresa&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Año&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Empresa&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0ce9fb69f78f19c3416f09141ada5494e9bb41cac021acae7941971dd04cdfcb.png" src="_images/0ce9fb69f78f19c3416f09141ada5494e9bb41cac021acae7941971dd04cdfcb.png" />
+</div>
+</div>
+<p>El uso IterativeImputer, imputó en el margen de EBITDA para 2024 una mejora en la todas las empresas. Por la mediana, este margen un aumento en lo que va del año, siento el cambio más abrupto desde el 2017.</p>
+</section>
+<section id="scatterplot-entre-ebitda-y-margen-ebitda">
+<h3>Scatterplot entre EBITDA y Margen EBITDA<a class="headerlink" href="#scatterplot-entre-ebitda-y-margen-ebitda" title="Link to this heading">#</a></h3>
+<p>Situaciones las observadas en el EBITDA ajustado y el margen EBITDA llevan a cuestionarse si existe una relación totalmente lineal entre ambos indicadores, debido a que los EBITDa ajustados más altos no necesariamente fueron los márgenes más altos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CH&#39;</span><span class="p">,</span> <span class="s1">&#39;HK&#39;</span><span class="p">,</span> <span class="s1">&#39;JP&#39;</span><span class="p">,</span> <span class="s1">&#39;KS&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="s1">&#39;SW&#39;</span><span class="p">]</span>
+<span class="n">e_per</span><span class="p">[</span><span class="s1">&#39;PAIS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">e_per</span><span class="p">[</span><span class="s1">&#39;PAIS&#39;</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="n">country_order</span><span class="p">,</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">e_per</span> <span class="o">=</span> <span class="n">e_per</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;PAIS&#39;</span><span class="p">)</span>
+<span class="n">e_per</span> <span class="o">=</span> <span class="n">e_per</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">long_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Margen&#39;</span><span class="p">,</span><span class="s1">&#39;Ajustado&#39;</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2025</span><span class="p">):</span>
+    <span class="n">long_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+        <span class="n">long_df</span><span class="p">,</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+            <span class="s1">&#39;Margen&#39;</span><span class="p">:</span> <span class="n">e_per</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+            <span class="s1">&#39;Ajustado&#39;</span><span class="p">:</span> <span class="n">eaj_usd</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="p">})</span>
+    <span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Valen\AppData\Local\Temp\ipykernel_15268\2224129711.py:4: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  long_df = pd.concat([
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">long_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Margen&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Ajustado&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scatter Plot de Margen vs Ajustado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Margen EBITDA&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;EBITDA Ajustado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7463e0033c653e124b4610c47b427a19ffd77a2f85854f4a5dae3988aea84e64.png" src="_images/7463e0033c653e124b4610c47b427a19ffd77a2f85854f4a5dae3988aea84e64.png" />
+</div>
+</div>
+<p>Se puede observar cierta relación creciente entre ambas variables, sin embargo también destaca una gran concetración de datos con EBITDA ajustados bajos pero márgenes de EBITDA altos, como el caso visto de Garmin Ltd.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Contexto</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="eda_esg.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ESG</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos">Conceptos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-ajustado">EBITDA Ajustado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#margen-ebitda">Margen EBITDA</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo">Desarrollo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-faltantes">Datos faltantes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empresas">Empresas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">EBITDA ajustado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-de-monedas">Conversión de monedas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-ajustado-por-ano">EBITDA ajustado por año</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-ajustado-promedio-por-empresa">EBITDA ajustado promedio por empresa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-ajustado-promedio-por-pais">EBITDA ajustado promedio por país</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-ajustado-por-empresa">EBITDA ajustado por empresa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-de-normalidad">Pruebas de normalidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputacion-con-iterativeimputer">Imputación con IterativeImputer()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ebitda-por-empresa-sin-datos-faltantes">EBITDA por empresa sin datos faltantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Margen EBITDA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#margen-ebitda-por-ano">Margen EBITDA por año</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promedio-de-margen-ebitda-por-empresa">Promedio de margen EBITDA por empresa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#promedio-de-margen-ebitda-por-pais">Promedio de margen EBITDA por país</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Imputación con IterativeImputer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#margen-ebitda-por-empresa-sin-datos-faltantes">Margen EBITDA por empresa sin datos faltantes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatterplot-entre-ebitda-y-margen-ebitda">Scatterplot entre EBITDA y Margen EBITDA</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valentina Cabrera, Valentina Bustamante
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

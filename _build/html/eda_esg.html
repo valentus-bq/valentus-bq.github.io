@@ -1,0 +1,4148 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ESG &#8212; Proyecto final de Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'eda_esg';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="EBITDA" href="eda_ebitda.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Proyecto final de Machine Learning - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Proyecto final de Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Contexto
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="eda_ebitda.html">EBITDA</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">ESG</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/eda_esg.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ESG</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sustnlytcs-esg-rsk-scr">Sustnlytcs ESG Rsk Scr</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iss-qualsc">ISS QualSc</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esg-disc-score">ESG Disc Score</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indep-directors">% Indep Directors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#women-on-bd">% Women on Bd</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ceo-tnr-asof-fy-end">CEO Tnr AsOf FY End</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tot-comp-pd-to-ceo-equiv">Tot Comp Pd to CEO &amp; Equiv</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pers-expn-per-empl">Pers Expn per Empl</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#women-emp">% Women Emp</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ltir">LTIR</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engy-intens-sls">Engy Intens/Sls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wste-per-sls">Wste Per Sls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wtr-intens-sls">Wtr Intens/Sls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-final">Base final</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="esg">
+<h1>ESG<a class="headerlink" href="#esg" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">shapiro</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En primer lugar, importamos la base de datos de nuestro interés.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/ESG consumer electronics.txt&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>ESG son los criterios que los inversores tienen en cuenta a la hora de realizar una inversión sobre una empresa. La composición de estas 3 letras hace referencia a las siglas de las palabras Environmental, Social y Governance las cuales hacen referencia a:</p>
+<ul class="simple">
+<li><p>Environmental : Impacto ambiental de la empresa ya sea directa o indirectamente.</p></li>
+<li><p>Social: Impacto social de la empresa.</p></li>
+<li><p>Governance: Gobierno corporativo de la empresa.</p></li>
+</ul>
+<p>Cabe resaltar que estos factores ayudan a los inversores a evaluar no solo el desempeño financiero, sino también el impacto y la sostenibilidad a largo plazo de la empresa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(14, 14)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Sustnlytcs ESG Rsk Scr</th>
+      <th>ISS QualSc</th>
+      <th>ESG Disc Score</th>
+      <th>% Indep Directors</th>
+      <th>% Women on Bd</th>
+      <th>CEO Tnr AsOf FY End</th>
+      <th>Tot Comp Pd to CEO &amp; Equiv</th>
+      <th>Pers Expn per Empl</th>
+      <th>% Women Emp</th>
+      <th>LTIR</th>
+      <th>Engy Intens/Sls</th>
+      <th>Wste Per Sls</th>
+      <th>Wtr Intens/Sls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Median</td>
+      <td>12.06</td>
+      <td>4.5</td>
+      <td>41.28</td>
+      <td>54.55</td>
+      <td>16.67%</td>
+      <td>2</td>
+      <td>1.79M</td>
+      <td>20.92k</td>
+      <td>36.15%</td>
+      <td>0.15</td>
+      <td>10.8</td>
+      <td>1.58</td>
+      <td>122</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>15.62</td>
+      <td>4</td>
+      <td>--</td>
+      <td>46.15</td>
+      <td>30.77%</td>
+      <td>5.83</td>
+      <td>2.48M</td>
+      <td>49.29k</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>20.99</td>
+      <td>9</td>
+      <td>--</td>
+      <td>66.67</td>
+      <td>33.33%</td>
+      <td>11</td>
+      <td>6.54M</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>8.51</td>
+      <td>1</td>
+      <td>--</td>
+      <td>100</td>
+      <td>40.00%</td>
+      <td>0.33</td>
+      <td>16.00M</td>
+      <td>--</td>
+      <td>38.00%</td>
+      <td>--</td>
+      <td>5.75</td>
+      <td>--</td>
+      <td>--</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>20.45</td>
+      <td>5</td>
+      <td>--</td>
+      <td>66.67</td>
+      <td>16.67%</td>
+      <td>2</td>
+      <td>1.79M</td>
+      <td>--</td>
+      <td>21.96%</td>
+      <td>0.15</td>
+      <td>28.13</td>
+      <td>2.81</td>
+      <td>116.02</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>20.92</td>
+      <td>4</td>
+      <td>--</td>
+      <td>66.67</td>
+      <td>11.11%</td>
+      <td>2</td>
+      <td>821.43k</td>
+      <td>20.92k</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>16.73</td>
+      <td>2</td>
+      <td>--</td>
+      <td>54.55</td>
+      <td>18.18%</td>
+      <td>1</td>
+      <td>1.05M</td>
+      <td>62.46k</td>
+      <td>37.30%</td>
+      <td>--</td>
+      <td>94.62</td>
+      <td>1.58</td>
+      <td>785.51</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>--</td>
+      <td>--</td>
+      <td>44.63</td>
+      <td>37.5</td>
+      <td>12.50%</td>
+      <td>0.92</td>
+      <td>464.83k</td>
+      <td>13.02k</td>
+      <td>42.03%</td>
+      <td>--</td>
+      <td>5.63</td>
+      <td>--</td>
+      <td>--</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>20.55</td>
+      <td>6</td>
+      <td>--</td>
+      <td>45.45</td>
+      <td>9.09%</td>
+      <td>2.83</td>
+      <td>1.27M</td>
+      <td>31.53k</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>0</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>30.29k</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>0</td>
+      <td>--</td>
+      <td>--</td>
+      <td>37.5</td>
+      <td>12.50%</td>
+      <td>1.75</td>
+      <td>10.34M</td>
+      <td>17.71k</td>
+      <td>35.00%</td>
+      <td>--</td>
+      <td>15.85</td>
+      <td>0.25</td>
+      <td>122</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>0</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>0.75</td>
+      <td>198.99k</td>
+      <td>8.17k</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>0</td>
+      <td>8</td>
+      <td>41.28</td>
+      <td>87.5</td>
+      <td>25.00%</td>
+      <td>12.08</td>
+      <td>5.68M</td>
+      <td>--</td>
+      <td>29.40%</td>
+      <td>--</td>
+      <td>2.53</td>
+      <td>--</td>
+      <td>--</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>0</td>
+      <td>--</td>
+      <td>32.52</td>
+      <td>42.86</td>
+      <td>0.00%</td>
+      <td>--</td>
+      <td>--</td>
+      <td>11.64k</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+      <td>--</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Reemplacemos los valores faltantes por NaN para poder hacer uso de las columnas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Sustnlytcs ESG Rsk Scr</th>
+      <th>ISS QualSc</th>
+      <th>ESG Disc Score</th>
+      <th>% Indep Directors</th>
+      <th>% Women on Bd</th>
+      <th>CEO Tnr AsOf FY End</th>
+      <th>Tot Comp Pd to CEO &amp; Equiv</th>
+      <th>Pers Expn per Empl</th>
+      <th>% Women Emp</th>
+      <th>LTIR</th>
+      <th>Engy Intens/Sls</th>
+      <th>Wste Per Sls</th>
+      <th>Wtr Intens/Sls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Median</td>
+      <td>12.06</td>
+      <td>4.5</td>
+      <td>41.28</td>
+      <td>54.55</td>
+      <td>16.67%</td>
+      <td>2</td>
+      <td>1.79M</td>
+      <td>20.92k</td>
+      <td>36.15%</td>
+      <td>0.15</td>
+      <td>10.8</td>
+      <td>1.58</td>
+      <td>122</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>15.62</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>46.15</td>
+      <td>30.77%</td>
+      <td>5.83</td>
+      <td>2.48M</td>
+      <td>49.29k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>20.99</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>66.67</td>
+      <td>33.33%</td>
+      <td>11</td>
+      <td>6.54M</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>8.51</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>100</td>
+      <td>40.00%</td>
+      <td>0.33</td>
+      <td>16.00M</td>
+      <td>NaN</td>
+      <td>38.00%</td>
+      <td>NaN</td>
+      <td>5.75</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>20.45</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>66.67</td>
+      <td>16.67%</td>
+      <td>2</td>
+      <td>1.79M</td>
+      <td>NaN</td>
+      <td>21.96%</td>
+      <td>0.15</td>
+      <td>28.13</td>
+      <td>2.81</td>
+      <td>116.02</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>20.92</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>66.67</td>
+      <td>11.11%</td>
+      <td>2</td>
+      <td>821.43k</td>
+      <td>20.92k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>16.73</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>54.55</td>
+      <td>18.18%</td>
+      <td>1</td>
+      <td>1.05M</td>
+      <td>62.46k</td>
+      <td>37.30%</td>
+      <td>NaN</td>
+      <td>94.62</td>
+      <td>1.58</td>
+      <td>785.51</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>44.63</td>
+      <td>37.5</td>
+      <td>12.50%</td>
+      <td>0.92</td>
+      <td>464.83k</td>
+      <td>13.02k</td>
+      <td>42.03%</td>
+      <td>NaN</td>
+      <td>5.63</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>20.55</td>
+      <td>6</td>
+      <td>NaN</td>
+      <td>45.45</td>
+      <td>9.09%</td>
+      <td>2.83</td>
+      <td>1.27M</td>
+      <td>31.53k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>30.29k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>37.5</td>
+      <td>12.50%</td>
+      <td>1.75</td>
+      <td>10.34M</td>
+      <td>17.71k</td>
+      <td>35.00%</td>
+      <td>NaN</td>
+      <td>15.85</td>
+      <td>0.25</td>
+      <td>122</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.75</td>
+      <td>198.99k</td>
+      <td>8.17k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>0</td>
+      <td>8</td>
+      <td>41.28</td>
+      <td>87.5</td>
+      <td>25.00%</td>
+      <td>12.08</td>
+      <td>5.68M</td>
+      <td>NaN</td>
+      <td>29.40%</td>
+      <td>NaN</td>
+      <td>2.53</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>32.52</td>
+      <td>42.86</td>
+      <td>0.00%</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>11.64k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>En este caso, <code class="docutils literal notranslate"><span class="pre">esg</span></code> es nuestra base de datos la cual cuenta con una dimensión de 14 observaciones representando a cada empresa y 14 columnas, características de estas. De estas 14 observaciones, hay una que representa la mediana de cada columna dada, se llama <code class="docutils literal notranslate"><span class="pre">Median</span></code> la cual borraremos. Esto quiere decir que, contamos con los datos de 13 empresas diferentes en total.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span> <span class="o">=</span> <span class="n">esg</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Sustnlytcs ESG Rsk Scr</th>
+      <th>ISS QualSc</th>
+      <th>ESG Disc Score</th>
+      <th>% Indep Directors</th>
+      <th>% Women on Bd</th>
+      <th>CEO Tnr AsOf FY End</th>
+      <th>Tot Comp Pd to CEO &amp; Equiv</th>
+      <th>Pers Expn per Empl</th>
+      <th>% Women Emp</th>
+      <th>LTIR</th>
+      <th>Engy Intens/Sls</th>
+      <th>Wste Per Sls</th>
+      <th>Wtr Intens/Sls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>15.62</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>46.15</td>
+      <td>30.77%</td>
+      <td>5.83</td>
+      <td>2.48M</td>
+      <td>49.29k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>20.99</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>66.67</td>
+      <td>33.33%</td>
+      <td>11</td>
+      <td>6.54M</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>8.51</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>100</td>
+      <td>40.00%</td>
+      <td>0.33</td>
+      <td>16.00M</td>
+      <td>NaN</td>
+      <td>38.00%</td>
+      <td>NaN</td>
+      <td>5.75</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>20.45</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>66.67</td>
+      <td>16.67%</td>
+      <td>2</td>
+      <td>1.79M</td>
+      <td>NaN</td>
+      <td>21.96%</td>
+      <td>0.15</td>
+      <td>28.13</td>
+      <td>2.81</td>
+      <td>116.02</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>20.92</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>66.67</td>
+      <td>11.11%</td>
+      <td>2</td>
+      <td>821.43k</td>
+      <td>20.92k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>16.73</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>54.55</td>
+      <td>18.18%</td>
+      <td>1</td>
+      <td>1.05M</td>
+      <td>62.46k</td>
+      <td>37.30%</td>
+      <td>NaN</td>
+      <td>94.62</td>
+      <td>1.58</td>
+      <td>785.51</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>44.63</td>
+      <td>37.5</td>
+      <td>12.50%</td>
+      <td>0.92</td>
+      <td>464.83k</td>
+      <td>13.02k</td>
+      <td>42.03%</td>
+      <td>NaN</td>
+      <td>5.63</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>20.55</td>
+      <td>6</td>
+      <td>NaN</td>
+      <td>45.45</td>
+      <td>9.09%</td>
+      <td>2.83</td>
+      <td>1.27M</td>
+      <td>31.53k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>30.29k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>37.5</td>
+      <td>12.50%</td>
+      <td>1.75</td>
+      <td>10.34M</td>
+      <td>17.71k</td>
+      <td>35.00%</td>
+      <td>NaN</td>
+      <td>15.85</td>
+      <td>0.25</td>
+      <td>122</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.75</td>
+      <td>198.99k</td>
+      <td>8.17k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>0</td>
+      <td>8</td>
+      <td>41.28</td>
+      <td>87.5</td>
+      <td>25.00%</td>
+      <td>12.08</td>
+      <td>5.68M</td>
+      <td>NaN</td>
+      <td>29.40%</td>
+      <td>NaN</td>
+      <td>2.53</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>32.52</td>
+      <td>42.86</td>
+      <td>0.00%</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>11.64k</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Para seguir con nuestro análisis, describamos primero las variables.</p>
+<ul class="simple">
+<li><p>Name: Nombre de la empresa.</p></li>
+<li><p>Sustnlytcs ESG Rsk Scr (Puntuación de riesgo ESG de SA): Es una puntuación que mide el riesgo ambiental, social y de gobernanza (ESG) al que está expuesta una empresa, según la metodología de Sustainalytics. Una puntuación más alta indica un mayor riesgo.</p></li>
+<li><p>ISS QualSc (ISS QualityScore): Es una calificación proporcionada por Institutional Shareholder Services (ISS) que evalúa la calidad y el nivel de riesgo en las prácticas de gobernanza corporativa de una empresa. Las áreas evaluadas suelen incluir la composición de la junta, los derechos de los accionistas y la remuneración de los ejecutivos.</p></li>
+<li><p>ESG Disc Score (ESG estimación de desglose): Este puntaje se refiere a una estimación que desglosa los componentes ambientales, sociales y de gobernanza en el desempeño de una empresa, proporcionando una visión detallada de su impacto ESG.</p></li>
+<li></li>
+<li></li>
+<li><p>CEO Tnr AsOf FY End (Mandato de consejero delegado en funciones desde fin del año fiscal): Mide la duración del mandato del CEO actual hasta el final del último año fiscal. Indica cuántos años lleva el CEO en su puesto hasta la fecha de corte.</p></li>
+<li><p>Tot Comp Pd to CEO &amp; Equiv (Remuneración total pagada a CEO y equivalente): Es la suma total de la compensación, que incluye salario, bonos, incentivos a largo plazo y otras formas de pago, que ha recibido el CEO y los ejecutivos equivalentes.</p></li>
+<li><p>Pers Expn per Empl (Gastos efectivos de personal por empleado): Representa el gasto total de la empresa en personal, dividido entre el número de empleados. Incluye salarios, beneficios y otros costos laborales.</p></li>
+<li></li>
+<li><p>LTIR (Tasa de incidentes con pérdida de tiempo - empleados): Es la tasa de incidentes que resultan en la pérdida de tiempo de trabajo por parte de los empleados, generalmente medido por cada 100 o 1,000 empleados. Se utiliza como un indicador de seguridad laboral.</p></li>
+<li><p>Engy Intens/Sls (Intensidad de energía por ventas): Mide la cantidad de energía consumida por la empresa en relación con sus ventas. Es un indicador de la eficiencia energética de la empresa.</p></li>
+<li><p>Wste Per Sls (Desechos generados por ventas): Este valor representa la cantidad de desechos producidos por la empresa por cada unidad de venta, reflejando su impacto ambiental.</p></li>
+<li><p>Wtr Intens/Sls (Intensidad del agua por ventas): Mide la cantidad de agua utilizada por la empresa en relación con sus ventas, otro indicador de eficiencia en el uso de recursos.</p></li>
+</ul>
+<p>Ahora, haremos unos cambios en la base de datos reescribiendo los valores de algunas columnas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;30.77%&#39;</span><span class="p">:</span> <span class="s1">&#39;30.77&#39;</span><span class="p">,</span> <span class="s1">&#39;33.33%&#39;</span><span class="p">:</span><span class="s1">&#39;33.33&#39;</span><span class="p">,</span> <span class="s1">&#39;40.00%&#39;</span><span class="p">:</span> <span class="s1">&#39;40.00&#39;</span><span class="p">,</span> <span class="s1">&#39;16.67%&#39;</span><span class="p">:</span><span class="s1">&#39;16.67&#39;</span><span class="p">,</span> <span class="s1">&#39;11.11%&#39;</span><span class="p">:</span><span class="s1">&#39;11.11&#39;</span><span class="p">,</span> <span class="s1">&#39;18.18%&#39;</span><span class="p">:</span><span class="s1">&#39;18.18&#39;</span><span class="p">,</span> <span class="s1">&#39;12.50%&#39;</span><span class="p">:</span><span class="s1">&#39;12.50&#39;</span><span class="p">,</span> <span class="s1">&#39;9.09%&#39;</span><span class="p">:</span><span class="s1">&#39;9.09&#39;</span><span class="p">,</span> <span class="s1">&#39;12.50%&#39;</span><span class="p">:</span><span class="s1">&#39;12.50&#39;</span><span class="p">,</span><span class="s1">&#39;25.00%&#39;</span><span class="p">:</span><span class="s1">&#39;25.00&#39;</span><span class="p">,</span> <span class="s1">&#39;0.00%&#39;</span><span class="p">:</span><span class="s1">&#39;0.00&#39;</span><span class="p">})</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;2.48M&#39;</span><span class="p">:</span> <span class="s1">&#39;2480000&#39;</span><span class="p">,</span> <span class="s1">&#39;6.54M&#39;</span><span class="p">:</span> <span class="s1">&#39;6540000&#39;</span><span class="p">,</span> <span class="s1">&#39;16.00M&#39;</span><span class="p">:</span> <span class="s1">&#39;16000000&#39;</span><span class="p">,</span> <span class="s1">&#39;1.79M&#39;</span><span class="p">:</span> <span class="s1">&#39;1790000&#39;</span><span class="p">,</span> <span class="s1">&#39;821.43k&#39;</span><span class="p">:</span> <span class="s1">&#39;821430&#39;</span><span class="p">,</span> <span class="s1">&#39;1.05M&#39;</span> <span class="p">:</span> <span class="s1">&#39; 1050000&#39;</span><span class="p">,</span> <span class="s1">&#39;464.83k&#39;</span> <span class="p">:</span> <span class="s1">&#39;464830&#39;</span><span class="p">,</span> <span class="s1">&#39;1.27M&#39;</span><span class="p">:</span> <span class="s1">&#39;1270000&#39;</span><span class="p">,</span> <span class="s1">&#39;10.34M&#39;</span> <span class="p">:</span> <span class="s1">&#39;10340000&#39;</span><span class="p">,</span> <span class="s1">&#39;198.99k&#39;</span><span class="p">:</span> <span class="s1">&#39;198990&#39;</span><span class="p">,</span> <span class="s1">&#39;5.68M&#39;</span> <span class="p">:</span> <span class="s1">&#39;5680000&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">})</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;49.29k&#39;</span><span class="p">:</span> <span class="s1">&#39;49290&#39;</span><span class="p">,</span> <span class="s1">&#39;20.92k&#39;</span><span class="p">:</span> <span class="s1">&#39;20920&#39;</span><span class="p">,</span> <span class="s1">&#39;62.46k&#39;</span><span class="p">:</span> <span class="s1">&#39;62460&#39;</span><span class="p">,</span> <span class="s1">&#39;13.02k&#39;</span><span class="p">:</span> <span class="s1">&#39;13020&#39;</span><span class="p">,</span> <span class="s1">&#39;31.53k&#39;</span><span class="p">:</span> <span class="s1">&#39;31530&#39;</span><span class="p">,</span> <span class="s1">&#39;30.29k&#39;</span> <span class="p">:</span> <span class="s1">&#39;30290&#39;</span><span class="p">,</span> <span class="s1">&#39;17.71k&#39;</span> <span class="p">:</span> <span class="s1">&#39;17710&#39;</span><span class="p">,</span> <span class="s1">&#39;8.17k&#39;</span><span class="p">:</span> <span class="s1">&#39;8170&#39;</span><span class="p">,</span> <span class="s1">&#39;11.64k&#39;</span> <span class="p">:</span> <span class="s1">&#39;11640&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">})</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;38.00%&#39;</span><span class="p">:</span> <span class="s1">&#39;38.00&#39;</span><span class="p">,</span> <span class="s1">&#39;21.96%&#39;</span><span class="p">:</span><span class="s1">&#39;21.96&#39;</span><span class="p">,</span> <span class="s1">&#39;37.30%&#39;</span><span class="p">:</span> <span class="s1">&#39;37.30&#39;</span><span class="p">,</span> <span class="s1">&#39;42.03%&#39;</span><span class="p">:</span><span class="s1">&#39;42.03&#39;</span><span class="p">,</span> <span class="s1">&#39;35.00%&#39;</span><span class="p">:</span><span class="s1">&#39;35.00&#39;</span><span class="p">,</span> <span class="s1">&#39;29.40%&#39;</span><span class="p">:</span><span class="s1">&#39;29.40&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Sustnlytcs ESG Rsk Scr</th>
+      <th>ISS QualSc</th>
+      <th>ESG Disc Score</th>
+      <th>% Indep Directors</th>
+      <th>% Women on Bd</th>
+      <th>CEO Tnr AsOf FY End</th>
+      <th>Tot Comp Pd to CEO &amp; Equiv</th>
+      <th>Pers Expn per Empl</th>
+      <th>% Women Emp</th>
+      <th>LTIR</th>
+      <th>Engy Intens/Sls</th>
+      <th>Wste Per Sls</th>
+      <th>Wtr Intens/Sls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>15.62</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>46.15</td>
+      <td>30.77</td>
+      <td>5.83</td>
+      <td>2480000</td>
+      <td>49290</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>20.99</td>
+      <td>9</td>
+      <td>NaN</td>
+      <td>66.67</td>
+      <td>33.33</td>
+      <td>11</td>
+      <td>6540000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>8.51</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>100</td>
+      <td>40.00</td>
+      <td>0.33</td>
+      <td>16000000</td>
+      <td>NaN</td>
+      <td>38.00</td>
+      <td>NaN</td>
+      <td>5.75</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>20.45</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>66.67</td>
+      <td>16.67</td>
+      <td>2</td>
+      <td>1790000</td>
+      <td>NaN</td>
+      <td>21.96</td>
+      <td>0.15</td>
+      <td>28.13</td>
+      <td>2.81</td>
+      <td>116.02</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>20.92</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>66.67</td>
+      <td>11.11</td>
+      <td>2</td>
+      <td>821430</td>
+      <td>20920</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>16.73</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>54.55</td>
+      <td>18.18</td>
+      <td>1</td>
+      <td>1050000</td>
+      <td>62460</td>
+      <td>37.30</td>
+      <td>NaN</td>
+      <td>94.62</td>
+      <td>1.58</td>
+      <td>785.51</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>44.63</td>
+      <td>37.5</td>
+      <td>12.50</td>
+      <td>0.92</td>
+      <td>464830</td>
+      <td>13020</td>
+      <td>42.03</td>
+      <td>NaN</td>
+      <td>5.63</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>20.55</td>
+      <td>6</td>
+      <td>NaN</td>
+      <td>45.45</td>
+      <td>9.09</td>
+      <td>2.83</td>
+      <td>1270000</td>
+      <td>31530</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>30290</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>37.5</td>
+      <td>12.50</td>
+      <td>1.75</td>
+      <td>10340000</td>
+      <td>17710</td>
+      <td>35.00</td>
+      <td>NaN</td>
+      <td>15.85</td>
+      <td>0.25</td>
+      <td>122</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.75</td>
+      <td>198990</td>
+      <td>8170</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>0</td>
+      <td>8</td>
+      <td>41.28</td>
+      <td>87.5</td>
+      <td>25.00</td>
+      <td>12.08</td>
+      <td>5680000</td>
+      <td>NaN</td>
+      <td>29.40</td>
+      <td>NaN</td>
+      <td>2.53</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>32.52</td>
+      <td>42.86</td>
+      <td>0.00</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>11640</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Antes de ver el tipo de variables, cabe mendionar que a simple vista se observa una gran cantidad de datos NA. Veamos esto gráficamente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">esg</span><span class="o">.</span><span class="n">isnull</span><span class="p">(),</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Datos Faltantes&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/810f59b568fc9bc1b1edad6849b701afb494fa61606202d9e213f56f30b6c0ce.png" src="_images/810f59b568fc9bc1b1edad6849b701afb494fa61606202d9e213f56f30b6c0ce.png" />
+</div>
+</div>
+<p>En donde los datos faltantes están representados por el color rosado, podemos observar que incluso hay variables con má observaciones faltantes que presentes. Ahora analicemos cada una de estas para observar su comportamiento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 13 entries, 1 to 13
+Data columns (total 14 columns):
+ #   Column                      Non-Null Count  Dtype 
+---  ------                      --------------  ----- 
+ 0   Name                        13 non-null     object
+ 1   Sustnlytcs ESG Rsk Scr      12 non-null     object
+ 2   ISS QualSc                  8 non-null      object
+ 3   ESG Disc Score              3 non-null      object
+ 4   % Indep Directors           11 non-null     object
+ 5   % Women on Bd               11 non-null     object
+ 6   CEO Tnr AsOf FY End         11 non-null     object
+ 7   Tot Comp Pd to CEO &amp; Equiv  11 non-null     object
+ 8   Pers Expn per Empl          9 non-null      object
+ 9   % Women Emp                 6 non-null      object
+ 10  LTIR                        1 non-null      object
+ 11  Engy Intens/Sls             6 non-null      object
+ 12  Wste Per Sls                3 non-null      object
+ 13  Wtr Intens/Sls              3 non-null      object
+dtypes: object(14)
+memory usage: 1.6+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora procederemos a analizar cada una de estas.</p>
+<section id="name">
+<h2>Name<a class="headerlink" href="#name" title="Link to this heading">#</a></h2>
+<p>Como ya se mencionó, esta hace referencia al nombre de las empresas.</p>
+<p>En este caso vamos a comprobar si cada una se repite más de una vez o no.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name
+Nintendo Co Ltd                   1
+Garmin Ltd                        1
+Logitech International SA         1
+LG Electronics Inc                1
+Sharp Corp/Japan                  1
+Nikon Corp                        1
+Hisense Visual Technology Co L    1
+Casio Computer Co Ltd             1
+TCL Electronics Holdings Ltd      1
+Skyworth Group Ltd                1
+Konka Group Co Ltd                1
+GoPro Inc                         1
+Funai Electric Co Ltd             1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tal como se esperaba, cada empresa cuenta con una única observación.</p>
+</section>
+<section id="sustnlytcs-esg-rsk-scr">
+<h2>Sustnlytcs ESG Rsk Scr<a class="headerlink" href="#sustnlytcs-esg-rsk-scr" title="Link to this heading">#</a></h2>
+<p>Esta variable en particular mide el riesgo de exposición y la gestión de la empresa a este riesgo de manera residual. Es decir que a mayor valor, la empresa está menos preparada para este riesgo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Sustnlytcs ESG Rsk Scr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Sustnlytcs ESG Rsk Scr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Sustnlytcs ESG Rsk Scr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    12.000000
+mean     10.314167
+std       9.716174
+min       0.000000
+25%       0.000000
+50%      12.065000
+75%      20.475000
+max      20.990000
+Name: Sustnlytcs ESG Rsk Scr, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observamos que hay una variabilidad en las puntuaciones de riesgo ESG entre las empresas estudiadas donde el menor puntaje es 0, es decir, con excelente gestión de riesgo ESG. La puntuación promedio es de 10.314167 con una variabilidad de 9.716174,lo que quiere decir que en general, las empresas tienen una exposición y una gestión de riesgos ESG que resultan en un nivel de riesgo medio.</p>
+<p>Veamos ahora, cuál puntuación le correponde a cada empresa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sustnlytcsempresa</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Sustnlytcs ESG Rsk Scr&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Sustnlytcs ESG Rsk Scr&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sustnlytcsempresa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Sustnlytcs ESG Rsk Scr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>8.51</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>15.62</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>16.73</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>20.45</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>20.55</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>20.92</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>20.99</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Podemos observar que las compañías TCL Electronics Holdings Ltd, Skyworth Group Ltd, Konka Group Co Ltd, GoPro Inc y Funai Electric Co Ltd presentan la mejor puntuación posible, indicando así que gestionan los riesgos ESG de manera bastante efectiva. Por otra parte, LG Electronics Inc, Casio Computer Co Ltd, Sharp Corp/Japan y Garmin Ltd	parecen enfretar deficiencias altas en la gestión de los riesgos ESG. De las demás compañías se puede decir que están en nivel medio.</p>
+<p>Después de haber visualizado esta tabla, notamos que hay un dato NA, por tanto, vamos a realizar su imputación.</p>
+<p>Primero analicemos la normalidad de la variable.</p>
+<p>Para esto haremos uso del test de Shpairo-Wilk.</p>
+<p>H0: Datos siguen distribución normal.
+H1: Datos no siguen distribución normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stat</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Sustnlytcs ESG Rsk Scr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Valor p: </span><span class="si">{</span><span class="n">p_valor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="k">if</span> <span class="n">p_valor</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos no parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valor p: 0.004365820094017453
+Los datos no parecen seguir una distribución normal
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se nos indica que los datos no siguen una distribución normal por lo que se imputará con la mediana.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imputer_median</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Sustnlytcs ESG Rsk Scr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer_median</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Sustnlytcs ESG Rsk Scr&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Sustnlytcs ESG Rsk Scr&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1     15.620
+2     20.990
+3      8.510
+4     20.450
+5     20.920
+6     16.730
+7     12.065
+8     20.550
+9      0.000
+10     0.000
+11     0.000
+12     0.000
+13     0.000
+Name: Sustnlytcs ESG Rsk Scr, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora estudiemos los atípicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Sustnlytcs ESG Rsk Scr&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x1f97cfb0880&gt;,
+  &lt;matplotlib.lines.Line2D at 0x1f97cfb0a00&gt;],
+ &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x1f97cfb0ca0&gt;,
+  &lt;matplotlib.lines.Line2D at 0x1f97cfb0f40&gt;],
+ &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x1f97cfb05e0&gt;],
+ &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x1f97cfc4220&gt;],
+ &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x1f97cfc44c0&gt;],
+ &#39;means&#39;: []}
+</pre></div>
+</div>
+<img alt="_images/6af15294347c91a6884ac3ea106cced691d61f674ccb06a7baa855fc5ea80932.png" src="_images/6af15294347c91a6884ac3ea106cced691d61f674ccb06a7baa855fc5ea80932.png" />
+</div>
+</div>
+<p>Obsrvamos que no hay datos atípicos.</p>
+</section>
+<section id="iss-qualsc">
+<h2>ISS QualSc<a class="headerlink" href="#iss-qualsc" title="Link to this heading">#</a></h2>
+<p>Con esta variable podemos analizar las prácticas de governanza corporativa de una empresa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ISS QualSc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ISS QualSc
+4    2
+9    1
+1    1
+5    1
+2    1
+6    1
+8    1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Teniendo en cuenta que una puntuación de 1 indica que la empresa está en el 10% inferior en términos de riesgo de gobernanza (es decir, con un riesgo muy bajo) y una puntuación de 10 indica que está en el 10% superior (es decir, con un riesgo muy alto). Se puede afirmar que 5 de las empresas están relativamente bien pues su califación se encuentra entre 1 y 5, es decir están en el 50% inferior, por otro lado, las 3 restantes tienen puntuación bastante alta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">riesgogobernanzaempresa</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;ISS QualSc&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;ISS QualSc&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">riesgogobernanzaempresa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>ISS QualSc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Garmin Ltd, GoPro Inc y Casio Computer Co Ltd cuentan con las puntuaciones más altas.</p>
+<p>Ahora se imputarán los valores faltantes que se observan en la tabla.</p>
+<p>Dado que trabajamos con estos datos de tipo factor, la imputación se hará con la moda.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imputer_moda</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;most_frequent&#39;</span><span class="p">)</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ISS QualSc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer_moda</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;ISS QualSc&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">imputer_moda</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;most_frequent&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ISS QualSc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer_moda</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;ISS QualSc&#39;</span><span class="p">]])</span>
+
+<span class="nn">File c:\Users\Valen\AppData\Local\miniconda3\envs\myenv\lib\site-packages\pandas\core\frame.py:4311,</span> in <span class="ni">DataFrame.__setitem__</span><span class="nt">(self, key, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4308</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_setitem_array</span><span class="p">([</span><span class="n">key</span><span class="p">],</span> <span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4309</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4310</span>     <span class="c1"># set column</span>
+<span class="ne">-&gt; </span><span class="mi">4311</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_set_item</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="nn">File c:\Users\Valen\AppData\Local\miniconda3\envs\myenv\lib\site-packages\pandas\core\frame.py:4524,</span> in <span class="ni">DataFrame._set_item</span><span class="nt">(self, key, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4514</span> <span class="k">def</span> <span class="nf">_set_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4515</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">4516</span><span class="sd">     Add series to DataFrame in specified column.</span>
+<span class="g g-Whitespace">   </span><span class="mi">4517</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4522</span><span class="sd">     ensure homogeneity.</span>
+<span class="g g-Whitespace">   </span><span class="mi">4523</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">4524</span>     <span class="n">value</span><span class="p">,</span> <span class="n">refs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sanitize_column</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4526</span>     <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">4527</span>         <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span>
+<span class="g g-Whitespace">   </span><span class="mi">4528</span>         <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">4529</span>         <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">ExtensionDtype</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4530</span>     <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4531</span>         <span class="c1"># broadcast across multiple columns if necessary</span>
+<span class="g g-Whitespace">   </span><span class="mi">4532</span>         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">is_unique</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">MultiIndex</span><span class="p">):</span>
+
+<span class="nn">File c:\Users\Valen\AppData\Local\miniconda3\envs\myenv\lib\site-packages\pandas\core\frame.py:5267,</span> in <span class="ni">DataFrame._sanitize_column</span><span class="nt">(self, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5265</span> <span class="k">if</span> <span class="n">is_list_like</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">5266</span>     <span class="n">com</span><span class="o">.</span><span class="n">require_length_match</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">5267</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">sanitize_array</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_2d</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5268</span> <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5269</span>     <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Index</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5270</span>     <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5273</span>     <span class="c1"># TODO: Remove kludge in sanitize_array for string mode when enforcing</span>
+<span class="g g-Whitespace">   </span><span class="mi">5274</span>     <span class="c1"># this deprecation</span>
+<span class="g g-Whitespace">   </span><span class="mi">5275</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5276</span>         <span class="s2">&quot;Setting an Index with object dtype into a DataFrame will stop &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">5277</span>         <span class="s2">&quot;inferring another dtype in a future version. Cast the Index &quot;</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5280</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
+<span class="g g-Whitespace">   </span><span class="mi">5281</span>     <span class="p">)</span>
+
+<span class="nn">File c:\Users\Valen\AppData\Local\miniconda3\envs\myenv\lib\site-packages\pandas\core\construction.py:606,</span> in <span class="ni">sanitize_array</span><span class="nt">(data, index, dtype, copy, allow_2d)</span>
+<span class="g g-Whitespace">    </span><span class="mi">604</span> <span class="n">subarr</span> <span class="o">=</span> <span class="n">data</span>
+<span class="g g-Whitespace">    </span><span class="mi">605</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">object</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">606</span>     <span class="n">subarr</span> <span class="o">=</span> <span class="n">maybe_infer_to_datetimelike</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">607</span>     <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span>         <span class="n">object_index</span>
+<span class="g g-Whitespace">    </span><span class="mi">609</span>         <span class="ow">and</span> <span class="n">using_pyarrow_string_dtype</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">610</span>         <span class="ow">and</span> <span class="n">is_string_dtype</span><span class="p">(</span><span class="n">subarr</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">611</span>     <span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">612</span>         <span class="c1"># Avoid inference when string option is set</span>
+<span class="g g-Whitespace">    </span><span class="mi">613</span>         <span class="n">subarr</span> <span class="o">=</span> <span class="n">data</span>
+
+<span class="nn">File c:\Users\Valen\AppData\Local\miniconda3\envs\myenv\lib\site-packages\pandas\core\dtypes\cast.py:1182,</span> in <span class="ni">maybe_infer_to_datetimelike</span><span class="nt">(value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1179</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>  <span class="c1"># pragma: no cover</span>
+<span class="g g-Whitespace">   </span><span class="mi">1180</span> <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1181</span>     <span class="c1"># Caller is responsible</span>
+<span class="ne">-&gt; </span><span class="mi">1182</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>  <span class="c1"># pragma: no cover</span>
+<span class="g g-Whitespace">   </span><span class="mi">1184</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1185</span>     <span class="k">return</span> <span class="n">value</span>
+
+<span class="ne">ValueError</span>: 2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="esg-disc-score">
+<h2>ESG Disc Score<a class="headerlink" href="#esg-disc-score" title="Link to this heading">#</a></h2>
+<p>Proporciona visión detallada de impacto ESG de una empresa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ESG Disc Score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ESG Disc Score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esgempresa</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;ESG Disc Score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;ESG Disc Score&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">esgempresa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>ESG Disc Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>44.63</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>41.28</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>32.52</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Para esta variable en particular, vamos a realizar una aclaración.</p>
+<p>Es evidente que más del 50% de la columna es de tipo NA, sin embargo, esta es una variable,a nuestro parecer, bastante importante por lo que en la práctica de este EDA los imputaremos.</p>
+<p>Tenemos la idea de acudir a nuestra tutora con el fin de ver si es posible encontrar los valores reales de esta variable para las empresas.</p>
+<p>Seguiremos la práctica de evaluar la normalidad primero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stat</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ESG Disc Score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Valor p: </span><span class="si">{</span><span class="n">p_valor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="k">if</span> <span class="n">p_valor</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos no parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valor p: 0.5179076952740529
+Los datos parecen seguir una distribución normal
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imputer_mean</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ESG Disc Score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer_mean</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;ESG Disc Score&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ESG Disc Score&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1     41.28
+2     41.28
+3     41.28
+4     41.28
+5     41.28
+6     41.28
+7     44.63
+8     41.28
+9     41.28
+10    41.28
+11    41.28
+12    41.28
+13    32.52
+Name: ESG Disc Score, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indep-directors">
+<h2>% Indep Directors<a class="headerlink" href="#indep-directors" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Indep Directors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Indep Directors&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Indep Directors&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count     11.000000
+mean      59.229091
+std       20.549176
+min       37.500000
+25%       44.155000
+50%       54.550000
+75%       66.670000
+max      100.000000
+Name: % Indep Directors, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esta variable brinda el porcentaje de directores independientes, los cuales son importantes pues sus decisiones de mejoras pueden ser más responsables y objetivas en el área de la governanza.</p>
+<p>Vemos que el promedio de este porcentaje evaluado en todas las empresas es de 59.229091 con una variabilidad considerable de 20.549176. Dicha desviación podemos decir que se debe a la diferencia entre el valor mínimo y máximo, 37.5 y 100 respectivamente, que están un poco alejados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">porcindempresa</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;% Indep Directors&#39;</span><span class="p">,</span> <span class="s1">&#39;ISS QualSc&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;% Indep Directors&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">porcindempresa</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>% Indep Directors</th>
+      <th>ISS QualSc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>37.50</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>37.50</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>42.86</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>45.45</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>46.15</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>54.55</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>66.67</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>66.67</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>66.67</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>87.50</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>100.00</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ISS QualSc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ISS QualSc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;Int64&#39;</span><span class="p">)</span> <span class="c1">#Cambio a tipo num temporal</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Indep Directors&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ISS QualSc&#39;</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="n">esg</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Relación entre Porcentaje de Directores Independientes y ISS QualityScore&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Porcentaje de Directores Independientes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ISS QualityScore&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aba0ac19cae35be23ca802fc7a2e88c5ef37a1597c6a324a108ff0856c56c8b7.png" src="_images/aba0ac19cae35be23ca802fc7a2e88c5ef37a1597c6a324a108ff0856c56c8b7.png" />
+</div>
+</div>
+<p>Vemos que la medida de qué tan buena es la gobernanza de cada empresa no guarda mucha relación con el porcentaje de directores independientes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ISS QualSc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;ISS QualSc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora imputaremos los datos atípicos.</p>
+<p>Para esto haremos uso del test de Shpairo-Wilk.</p>
+<p>H0: Datos siguen distribución normal.</p>
+<p>H1: Datos no siguen distribución normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stat</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Indep Directors&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Valor p: </span><span class="si">{</span><span class="n">p_valor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="k">if</span> <span class="n">p_valor</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos no parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valor p: 0.15444935232682333
+Los datos parecen seguir una distribución normal
+</pre></div>
+</div>
+</div>
+</div>
+<p>Por tanto, se tarbaja con la media.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imputer_mean</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Indep Directors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer_mean</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;% Indep Directors&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Indep Directors&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1      46.150000
+2      66.670000
+3     100.000000
+4      66.670000
+5      66.670000
+6      54.550000
+7      37.500000
+8      45.450000
+9      59.229091
+10     37.500000
+11     59.229091
+12     87.500000
+13     42.860000
+Name: % Indep Directors, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>En efecto, se realizó la imputación.</p>
+<p>Ahora veamos si hay datos atípicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Indep Directors&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0851c40&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b0851ee0&gt;],
+ &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x235b08601c0&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b0860460&gt;],
+ &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x235b08519a0&gt;],
+ &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0860700&gt;],
+ &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b08609a0&gt;],
+ &#39;means&#39;: []}
+</pre></div>
+</div>
+<img alt="_images/0b9c5052c20d6be7c505d4f9a94a3807cdd4beab56eb0da87c140fb6e4b7fe04.png" src="_images/0b9c5052c20d6be7c505d4f9a94a3807cdd4beab56eb0da87c140fb6e4b7fe04.png" />
+</div>
+</div>
+<p>Vemos que se cuenta con único dato atípico siendo este superior e igual a 100. Es decir, el dato atípico es el 100% de directores independientes en la compañía Logitech International SA.</p>
+</section>
+<section id="women-on-bd">
+<h2>% Women on Bd<a class="headerlink" href="#women-on-bd" title="Link to this heading">#</a></h2>
+<p>Cantidad de mujeres en la junta de la empresa.
+Este porcenaje puede ser importante para el criterio social.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    11.000000
+mean     19.013636
+std      11.970552
+min       0.000000
+25%      11.805000
+50%      16.670000
+75%      27.885000
+max      40.000000
+Name: % Women on Bd, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos ver que el porcentaje de mujeres en la junta es bastante pequeño (19%) lo que puede ser mal visto socialmente.
+Asimismo, el valor mínimo indica que alguna de las empresas no tienen presencia de mujeres y el porcentaje más alto es de apenas 40%.</p>
+<p>Veamos cuáles empresas presentan cada porcentaje.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">womjunempresa</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;% Women on Bd&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">womjunempresa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>% Women on Bd</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>9.09</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>11.11</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>12.50</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>12.50</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>16.67</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>18.18</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>25.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>30.77</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>33.33</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>40.00</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Observamos que en general el porcentaje de mujeres en la junta es bastane bajo, el mayor de estos ni siquiera llega la 50% e incluso el menor que corresponde a la empresa Funai Electric Co Ltd es del 0%. Esto demuestra que en este tipo de empresas la participación de las mujeres es reducida.</p>
+<p>Ahora, como se ve en la tabla, existen datos atípicos, por tanto, vamos a imputarlos, analizando antes su normalidad.</p>
+<p>Para esto haremos uso del test de Shpairo-Wilk.</p>
+<p>H0: Datos siguen distribución normal.</p>
+<p>H1: Datos no siguen distribución normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stat</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Valor p: </span><span class="si">{</span><span class="n">p_valor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="k">if</span> <span class="n">p_valor</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos no parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valor p: 0.7573507648246522
+Los datos parecen seguir una distribución normal
+</pre></div>
+</div>
+</div>
+</div>
+<p>Entonces, la imputación se hará con la media.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imputer_mean</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer_mean</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1     30.770000
+2     33.330000
+3     40.000000
+4     16.670000
+5     11.110000
+6     18.180000
+7     12.500000
+8      9.090000
+9     19.013636
+10    12.500000
+11    19.013636
+12    25.000000
+13     0.000000
+Name: % Women on Bd, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora, analicemos la presencia de datos atípicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0a94c40&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b0ab32e0&gt;],
+ &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0ab3580&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b0ab3820&gt;],
+ &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0aa0e80&gt;],
+ &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0ab3ac0&gt;],
+ &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0ab3d60&gt;],
+ &#39;means&#39;: []}
+</pre></div>
+</div>
+<img alt="_images/74b21b6f45998d6f99a9bad555d62efb707720f5088b0a6cb0299765dd5d2997.png" src="_images/74b21b6f45998d6f99a9bad555d62efb707720f5088b0a6cb0299765dd5d2997.png" />
+</div>
+</div>
+<p>Vemos que no hay datos atípicos y el que los valores parecen estar un poco balanceados.</p>
+</section>
+<section id="ceo-tnr-asof-fy-end">
+<h2>CEO Tnr AsOf FY End<a class="headerlink" href="#ceo-tnr-asof-fy-end" title="Link to this heading">#</a></h2>
+<p>Indica cuántos años lleva el CEO en su puesto hasta la fecha de corte.</p>
+<p>Lo primero que haremos es pasarlo a tipo numérico para poder analizar mejor los valores entre empresas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;CEO Tnr AsOf FY End&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;CEO Tnr AsOf FY End&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora, vamos a analizar algunas características descriptivas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;CEO Tnr AsOf FY End&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    11.000000
+mean      3.680909
+std       4.164907
+min       0.330000
+25%       0.960000
+50%       2.000000
+75%       4.330000
+max      12.080000
+Name: CEO Tnr AsOf FY End, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esto quiere decir que el tiempo promedio de duración de los CEO’s es de 3.680909 años, 3.9 aproximado, e incluso vemos que la valor de la desviación estándar es superior dada la gran diferencia entre el dato mínimo de 0.33 años y el dato mayor de 12.08 años.</p>
+<p>Ahora, veamos a cuál empresa corresponde cada una de estas duraciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">durceoempresa</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;CEO Tnr AsOf FY End&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;CEO Tnr AsOf FY End&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">durceoempresa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>CEO Tnr AsOf FY End</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>0.33</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>0.92</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>1.75</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>2.00</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>2.00</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>2.83</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>5.83</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>11.00</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>12.08</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Lo que podemos interpretar es que la empresa en donde el CEO duró menos tiempo es Logitech International SA. También se observa que en general la duración fue bastante baja, exceptuando a Garmin Ltd y GoPro Inc, en donde la duración de estos directivos fue de más de 10 años, y en las demás el máximo de casi 6 años.</p>
+<p>Ahora veamos si existen datos faltantes</p>
+<p>Tal como se observa en la tabla, en efecto existen datos faltantes.</p>
+<p>Ahora bien, para realizar la imputación de estos primero toca evaluar su normalidad, lo cual haremos con el test de Shapiro-Wilk.</p>
+<p>H0: Datos siguen distribución normal.</p>
+<p>H1: Datos no siguen distribución normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stat</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;CEO Tnr AsOf FY End&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Valor p: </span><span class="si">{</span><span class="n">p_valor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="k">if</span> <span class="n">p_valor</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos no parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valor p: 0.0017857298931570308
+Los datos no parecen seguir una distribución normal
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tal como se esperaba, debido a la gran dispersión de los datos entre sí, la muestra no sigue una distribución normal.</p>
+<p>Es decir, la imputación se realizará con la mediana.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imputer_median</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;CEO Tnr AsOf FY End&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer_median</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;CEO Tnr AsOf FY End&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;CEO Tnr AsOf FY End&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1      5.83
+2     11.00
+3      0.33
+4      2.00
+5      2.00
+6      1.00
+7      0.92
+8      2.83
+9      2.00
+10     1.75
+11     0.75
+12    12.08
+13     2.00
+Name: CEO Tnr AsOf FY End, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observamos que efectivamente se realizó la imputación. Esto nos da lugar entonces a detectar si existen o no datos atípicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;CEO Tnr AsOf FY End&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0b1dd30&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b0b1dfd0&gt;],
+ &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0b2d2b0&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b0b2d550&gt;],
+ &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0b1da90&gt;],
+ &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0b2d7f0&gt;],
+ &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0b2da90&gt;],
+ &#39;means&#39;: []}
+</pre></div>
+</div>
+<img alt="_images/14d498bc313c01f7804aaa23416fb763358b740bad85578a8390c08dfbc5cf8e.png" src="_images/14d498bc313c01f7804aaa23416fb763358b740bad85578a8390c08dfbc5cf8e.png" />
+</div>
+</div>
+<p>Podemos observar que en efecto contamos con la existencia de 3 outliers.</p>
+<p>Además, lo que se mencionaba de que habían años muy superiores comparados con otros se observa en el tamaño de la caja y los valores en los que se concentra.</p>
+</section>
+<section id="tot-comp-pd-to-ceo-equiv">
+<h2>Tot Comp Pd to CEO &amp; Equiv<a class="headerlink" href="#tot-comp-pd-to-ceo-equiv" title="Link to this heading">#</a></h2>
+<p>Para el análisis de esta variable, vamos a convertir la variable a tipo numérico.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;Int64&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count              11.0
+mean     4239568.181818
+std      5032261.808996
+min            198990.0
+25%            935715.0
+50%           1790000.0
+75%           6110000.0
+max          16000000.0
+Name: Tot Comp Pd to CEO &amp; Equiv, dtype: Float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>El análisis muestra que el promedio pagado a los CEO y ejecutivos equivalentes es aproximadamente <span class="math notranslate nohighlight">\(4239568, con una desviación estándar cercana a \)</span>5032261. Esta alta desviación estándar refleja una significativa variabilidad en los sueldos, debido a las grandes diferencias entre los valores individuales. El sueldo más bajo registrado es de <span class="math notranslate nohighlight">\(198990, mientras que el sueldo más alto alcanza los \)</span>16,000,000. Esta amplia gama de sueldos contribuye a la notable desviación estándar observada</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sueldoceoempresa</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sueldoceoempresa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Tot Comp Pd to CEO &amp; Equiv</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>16000000</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>10340000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>6540000</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>5680000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>2480000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>1790000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>1270000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>1050000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>821430</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>464830</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>198990</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Es decir que la empresa que más le paga a su CEO y ejecutivos equivalentes es Logitech International SA, mientras que la que tiene menor sueldo es Konka Group Co Ltd.</p>
+<p>Ahora bien, es evidente que esta variable cuenta con datos faltantes. Para decidir cómo imputarlos, analicemos su normalidad.</p>
+<p>Para esto haremos uso del test de Shpairo-Wilk.</p>
+<p>H0: Datos siguen distribución normal.
+H1: Datos no siguen distribución normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stat</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Valor p: </span><span class="si">{</span><span class="n">p_valor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="k">if</span> <span class="n">p_valor</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos no parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valor p: 0.007403639701593033
+Los datos no parecen seguir una distribución normal
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dado que no se sigue una distribución normal, entonces se realizará la imputación con la mediana.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imputer_median</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer_median</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1      2480000.0
+2      6540000.0
+3     16000000.0
+4      1790000.0
+5       821430.0
+6      1050000.0
+7       464830.0
+8      1270000.0
+9      1790000.0
+10    10340000.0
+11      198990.0
+12     5680000.0
+13     1790000.0
+Name: Tot Comp Pd to CEO &amp; Equiv, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luego de esto, veamos si hay datos atípicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Tot Comp Pd to CEO &amp; Equiv&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0b8ee80&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b0b9e160&gt;],
+ &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0b9e400&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b0b9e6a0&gt;],
+ &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0b8ebe0&gt;],
+ &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0b9e940&gt;],
+ &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0b9ebe0&gt;],
+ &#39;means&#39;: []}
+</pre></div>
+</div>
+<img alt="_images/bad7354c78ce51c3b957e051a5c370d4ff09a69e85c9fa6e69cde9bd4ee2f23d.png" src="_images/bad7354c78ce51c3b957e051a5c370d4ff09a69e85c9fa6e69cde9bd4ee2f23d.png" />
+</div>
+</div>
+<p>En efecto existe un dato atípico, que vendría siendo el valor de 16M.</p>
+</section>
+<section id="pers-expn-per-empl">
+<h2>Pers Expn per Empl<a class="headerlink" href="#pers-expn-per-empl" title="Link to this heading">#</a></h2>
+<p>Para el análisis de esta variable, vamos a convertir la variable a tipo numérico.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;Int64&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count             9.0
+mean     27225.555556
+std      18351.948882
+min            8170.0
+25%           13020.0
+50%           20920.0
+75%           31530.0
+max           62460.0
+Name: Pers Expn per Empl, dtype: Float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esta variable nos indica lo que se gastan en promedio con los empleados.</p>
+<p>Podemos observar que en esta ocasión los datos extremos son relativamente cercanos entre sí. El promedio de estos es de aproximadamente <span class="math notranslate nohighlight">\(27225 con desviación estandar de \)</span>18351 aprox. Va de la mano con mencionado en un principio donde el valor mínimo es <span class="math notranslate nohighlight">\(8170 y el mayor \)</span>62460.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sueldoempleadoprom</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sueldoempleadoprom</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Pers Expn per Empl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>62460</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>49290</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>31530</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>30290</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>20920</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>17710</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>13020</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>11640</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>8170</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>&lt;NA&gt;</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>En este caso, la empresa que cuenta un mayor promedio en cuanto al sueldo de los empleados es Nikon Corp con $62420, mientras que, según los registros, la que menos es nuevamente Konka Group Co Ltd.</p>
+<p>Evidenteme hay datos faltantes, por tanto, se imputarán.</p>
+<p>Primero veamos si siguen distribución normal o no.</p>
+<p>Con Shapiro-Wilk.</p>
+<p>H0: Datos siguen distribución normal.
+H1: Datos no siguen distribución normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stat</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Valor p: </span><span class="si">{</span><span class="n">p_valor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="k">if</span> <span class="n">p_valor</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos no parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valor p: 0.21066837466315236
+Los datos parecen seguir una distribución normal
+</pre></div>
+</div>
+</div>
+</div>
+<p>El p-valor es superior a 0.05, por tanto, los datos siguen una distribución normal lo que quiere decir que se imputará con la media.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imputer_median</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer_median</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1     49290.000000
+2     27225.555556
+3     27225.555556
+4     27225.555556
+5     20920.000000
+6     62460.000000
+7     13020.000000
+8     31530.000000
+9     30290.000000
+10    17710.000000
+11     8170.000000
+12    27225.555556
+13    11640.000000
+Name: Pers Expn per Empl, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Veamos ahora si hay datos atípicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Pers Expn per Empl&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0c54160&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b0c54400&gt;],
+ &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0c546a0&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b0c54940&gt;],
+ &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0c46e80&gt;],
+ &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0c54be0&gt;],
+ &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0c54e80&gt;],
+ &#39;means&#39;: []}
+</pre></div>
+</div>
+<img alt="_images/a9f01734c242eeaa860488748ef2b9ada276bb923f26d6eb3e8a339415679054.png" src="_images/a9f01734c242eeaa860488748ef2b9ada276bb923f26d6eb3e8a339415679054.png" />
+</div>
+</div>
+</section>
+<section id="women-emp">
+<h2>% Women Emp<a class="headerlink" href="#women-emp" title="Link to this heading">#</a></h2>
+<p>Esta es otra variable importante para el campo social pues se trata del porcentaje de mujeres en la empresa, independientemente de su rol.</p>
+<p>Es interesante analizar esta luego de haber estudiado el porcentaje pero solo de las que estaban en la junta.</p>
+<p>Tal como se ha venido haciendo, el primer paso es convertir los valores de la variable a tipo numérico.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Veamos las medidas de esta y analicemos si hubo algún cambio respecto a la que solo pertenecen a la junta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count     6.000000
+mean     33.948333
+std       7.189944
+min      21.960000
+25%      30.800000
+50%      36.150000
+75%      37.825000
+max      42.030000
+Name: % Women Emp, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos ver que en esta ocasión contamos con resultados relativamente mejores.</p>
+<p>El promedio de mujeres en <strong>toda</strong> la empresa resultó ser del 34% (aproximado), lo cual es mayor que el 19% obtenido únicamente en la junta.</p>
+<p>También cabe mencionar que en esta ocasión el valor minimo obtenido es de 21.96, bastante mejor que el 0, sin embargo, el valor mayor no varió mucho y se mantuvo cercano siendo de 42%.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">],</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women on Bd&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cualquier rol vs Junta&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Cualquier rol&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Junta&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16f3e5b80db533d8be7d9db102dabbf02b7a2a4e3fe91b7590eecb0e3854ae96.png" src="_images/16f3e5b80db533d8be7d9db102dabbf02b7a2a4e3fe91b7590eecb0e3854ae96.png" />
+</div>
+</div>
+<p>En primera instancia, vemos que no hay un relación lineal estable entre ellas. Sin embargo, sí se puede notar que en general los puntos de las mujeres en cualquier rol están en valores mayores que los de solo junta.</p>
+<p>Ahora, notemos si exiten datos faltantes o no.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">na_</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">na_</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;lightpink&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Datos Faltantes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;¿Datos Faltantes?&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cantidad&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sí&#39;</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2b171adf6480b665b283269ed4eae96b0f38452fb41773610e1a2e32e203004c.png" src="_images/2b171adf6480b665b283269ed4eae96b0f38452fb41773610e1a2e32e203004c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cant_na</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">tot</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">porcentaje_na</span> <span class="o">=</span> <span class="p">(</span><span class="n">cant_na</span> <span class="o">/</span> <span class="n">tot</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">porcentaje_na</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>53.84615384615385
+</pre></div>
+</div>
+</div>
+</div>
+<p>En efecto tenemos que aproximadamente el 54% de los datos son de tipo NA, es un porcentaje considerable.</p>
+<p>Ahora, procederemos a imputarlos.</p>
+<p>Evaluemos primero la normalidad.</p>
+<p>Para esto haremos uso del test de Shpairo-Wilk.</p>
+<p>H0: Datos siguen distribución normal.</p>
+<p>H1: Datos no siguen distribución normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stat</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Valor p: </span><span class="si">{</span><span class="n">p_valor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="k">if</span> <span class="n">p_valor</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos no parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valor p: 0.5961812574297594
+Los datos parecen seguir una distribución normal
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lo anterior nos indica que la imputación debe realizarse haciendo uso de la media.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imputer_mean</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer_mean</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1     33.948333
+2     33.948333
+3     38.000000
+4     21.960000
+5     33.948333
+6     37.300000
+7     42.030000
+8     33.948333
+9     33.948333
+10    35.000000
+11    33.948333
+12    29.400000
+13    33.948333
+Name: % Women Emp, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luego de observar que sí se realizó la imputación de manera satisfactoria, procederemos entonces a detectar datos atípicos con la ayuda de Boxplot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;% Women Emp&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b10673a0&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b11bcbe0&gt;],
+ &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x235b11bc5e0&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b11bc2e0&gt;],
+ &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x235b10677c0&gt;],
+ &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x235b11bc1c0&gt;],
+ &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b1489070&gt;],
+ &#39;means&#39;: []}
+</pre></div>
+</div>
+<img alt="_images/d56affb1ced94d48af6dea1bdaf6f53baa467c20daddadef8f39450f839ff360.png" src="_images/d56affb1ced94d48af6dea1bdaf6f53baa467c20daddadef8f39450f839ff360.png" />
+</div>
+</div>
+<p>Observamos que existen varios outliers y que la caja está bastante concentrada. Esto se debe a que la imputación se le realizó a más de la mitad de las observaciones.</p>
+</section>
+<section id="ltir">
+<h2>LTIR<a class="headerlink" href="#ltir" title="Link to this heading">#</a></h2>
+<p>Esta es una métrica que se encarga de medir qué tan seguro es el ambiente laboral en una empresa.</p>
+<p>En este caso se calcula multiplicando el total de incidentes por un número de empleados y este resultado dividiéndolo entre la cantidad de horas trabajadas.</p>
+<p>Cabe resaltar que entre mayor sea LTIR, entonces significa que los incidentes son recurrentes y por ende hay problmeas con la seguridad.</p>
+<p>En particular, esta variable cuenta con un solo valor. Veamoslo graficamente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">na_</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;LTIR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">na_</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;lightpink&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Datos Faltantes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;¿Datos Faltantes?&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cantidad&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sí&#39;</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9466c67fec1361b7e3d449a9eea37aabc0027e3c135df490ab40ef42974da61a.png" src="_images/9466c67fec1361b7e3d449a9eea37aabc0027e3c135df490ab40ef42974da61a.png" />
+</div>
+</div>
+<p>Esto significa que la variable no brinda suficiente información, por lo tanto se borrará de la base de datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span> <span class="o">=</span> <span class="n">esg</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;LTIR&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="engy-intens-sls">
+<h2>Engy Intens/Sls<a class="headerlink" href="#engy-intens-sls" title="Link to this heading">#</a></h2>
+<p>Esta variable es un indicador de la eficiencia energética de la empresa.</p>
+<p>Primero pasemos los valores a tipo numérico.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Engy Intens/Sls&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Engy Intens/Sls&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Veamos datos descriptivos sobre la variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Engy Intens/Sls&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count     6.000000
+mean     25.418333
+std      35.185435
+min       2.530000
+25%       5.660000
+50%      10.800000
+75%      25.060000
+max      94.620000
+Name: Engy Intens/Sls, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos ver que el promedio de eficiencia energética de las empresas es relativamente bajo, siendo este de 25%, lo que indica que en general las empresas consumen menos energía lo cual es bueno. Sin embargo, veamos la alta desviación estandar, dada por la gran diferencia entre el valor superior e inferior que son 94.6% y 2.5%.</p>
+<p>Ahora veamos esto en una tabla para conocer a cuales empresas corresponde cada porcentaje.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">energiaempresa</span> <span class="o">=</span> <span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Engy Intens/Sls&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Engy Intens/Sls&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">energiaempresa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Engy Intens/Sls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>2.53</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>5.63</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>5.75</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>15.85</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>28.13</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>94.62</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Es decir que GoPro Inc es la mejor en términos de eficiencia de energía y la peor es Nikon Corp.</p>
+<p>Ahora vemos que claramente existen valores faltantes, por tanto, analizaremos la normalidad para poder imputar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stat</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Engy Intens/Sls&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Valor p: </span><span class="si">{</span><span class="n">p_valor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="k">if</span> <span class="n">p_valor</span> <span class="o">&gt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos no parecen seguir una distribución normal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valor p: 0.008381833356050044
+Los datos no parecen seguir una distribución normal
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es decir que la imputación se hará con la mediana.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imputer_median</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)</span>
+<span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Engy Intens/Sls&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer_median</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">esg</span><span class="p">[[</span><span class="s1">&#39;Engy Intens/Sls&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Engy Intens/Sls&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1     10.80
+2     10.80
+3      5.75
+4     28.13
+5     10.80
+6     94.62
+7      5.63
+8     10.80
+9     10.80
+10    15.85
+11    10.80
+12     2.53
+13    10.80
+Name: Engy Intens/Sls, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora detectemos valores atípicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Engy Intens/Sls&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b11a2370&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b11a2e80&gt;],
+ &#39;caps&#39;: [&lt;matplotlib.lines.Line2D at 0x235b11a2a00&gt;,
+  &lt;matplotlib.lines.Line2D at 0x235b11a2d00&gt;],
+ &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0ad1a90&gt;],
+ &#39;medians&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0f19e50&gt;],
+ &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D at 0x235b0f19be0&gt;],
+ &#39;means&#39;: []}
+</pre></div>
+</div>
+<img alt="_images/282b2f251ed393db9a754cea156eedc73f28db44290d7fe58123ae40087859e5.png" src="_images/282b2f251ed393db9a754cea156eedc73f28db44290d7fe58123ae40087859e5.png" />
+</div>
+</div>
+<p>Tal como era de esperarse, debido a la imputación se presenta este tipo de comportamiento en la caja, haciendo que haya más probabilidad de tener valores atípicos como se muestra en la gráfica.</p>
+</section>
+<section id="wste-per-sls">
+<h2>Wste Per Sls<a class="headerlink" href="#wste-per-sls" title="Link to this heading">#</a></h2>
+<p>Esta variable hace referencia a la cantidad de desechos, siendo un indicador del impacto ambiental, no obstante, al observar la tabla, podemos darnos cuenta de que cuenta solo con 3 observaciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tot</span><span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Wste Per Sls&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">na_</span><span class="o">=</span> <span class="n">esg</span><span class="p">[</span><span class="s1">&#39;Wste Per Sls&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">prct_na</span> <span class="o">=</span> <span class="p">(</span><span class="n">na_</span> <span class="o">/</span> <span class="n">tot</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">prct_na</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>76.92307692307693
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es decir que, del 100% de las observaciones, el 76% son datos faltantes por lo que la variable no resulta útil y por ende será borrada.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span> <span class="o">=</span> <span class="n">esg</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Wste Per Sls&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="wtr-intens-sls">
+<h2>Wtr Intens/Sls<a class="headerlink" href="#wtr-intens-sls" title="Link to this heading">#</a></h2>
+<p>Este es otro indicador de eficiencia en el uso de recursos relacionado con el agua.</p>
+<p>Nuevamente nos encontramos con una variable de solo 3 observaciones, por lo tanto su representación de NA también es 76%, lo que quiere decir que será eliminada del conjunto de datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span> <span class="o">=</span> <span class="n">esg</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Wtr Intens/Sls&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="base-final">
+<h2>Base final<a class="headerlink" href="#base-final" title="Link to this heading">#</a></h2>
+<p>Nos resulta entonces la base siguiente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Sustnlytcs ESG Rsk Scr</th>
+      <th>ISS QualSc</th>
+      <th>ESG Disc Score</th>
+      <th>% Indep Directors</th>
+      <th>% Women on Bd</th>
+      <th>CEO Tnr AsOf FY End</th>
+      <th>Tot Comp Pd to CEO &amp; Equiv</th>
+      <th>Pers Expn per Empl</th>
+      <th>% Women Emp</th>
+      <th>Engy Intens/Sls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Nintendo Co Ltd</td>
+      <td>15.620</td>
+      <td>4</td>
+      <td>41.28</td>
+      <td>46.150000</td>
+      <td>30.770000</td>
+      <td>5.83</td>
+      <td>2480000.0</td>
+      <td>49290.000000</td>
+      <td>33.948333</td>
+      <td>10.80</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Garmin Ltd</td>
+      <td>20.990</td>
+      <td>9</td>
+      <td>41.28</td>
+      <td>66.670000</td>
+      <td>33.330000</td>
+      <td>11.00</td>
+      <td>6540000.0</td>
+      <td>27225.555556</td>
+      <td>33.948333</td>
+      <td>10.80</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Logitech International SA</td>
+      <td>8.510</td>
+      <td>1</td>
+      <td>41.28</td>
+      <td>100.000000</td>
+      <td>40.000000</td>
+      <td>0.33</td>
+      <td>16000000.0</td>
+      <td>27225.555556</td>
+      <td>38.000000</td>
+      <td>5.75</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LG Electronics Inc</td>
+      <td>20.450</td>
+      <td>5</td>
+      <td>41.28</td>
+      <td>66.670000</td>
+      <td>16.670000</td>
+      <td>2.00</td>
+      <td>1790000.0</td>
+      <td>27225.555556</td>
+      <td>21.960000</td>
+      <td>28.13</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sharp Corp/Japan</td>
+      <td>20.920</td>
+      <td>4</td>
+      <td>41.28</td>
+      <td>66.670000</td>
+      <td>11.110000</td>
+      <td>2.00</td>
+      <td>821430.0</td>
+      <td>20920.000000</td>
+      <td>33.948333</td>
+      <td>10.80</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Nikon Corp</td>
+      <td>16.730</td>
+      <td>2</td>
+      <td>41.28</td>
+      <td>54.550000</td>
+      <td>18.180000</td>
+      <td>1.00</td>
+      <td>1050000.0</td>
+      <td>62460.000000</td>
+      <td>37.300000</td>
+      <td>94.62</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Hisense Visual Technology Co L</td>
+      <td>12.065</td>
+      <td>4</td>
+      <td>44.63</td>
+      <td>37.500000</td>
+      <td>12.500000</td>
+      <td>0.92</td>
+      <td>464830.0</td>
+      <td>13020.000000</td>
+      <td>42.030000</td>
+      <td>5.63</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Casio Computer Co Ltd</td>
+      <td>20.550</td>
+      <td>6</td>
+      <td>41.28</td>
+      <td>45.450000</td>
+      <td>9.090000</td>
+      <td>2.83</td>
+      <td>1270000.0</td>
+      <td>31530.000000</td>
+      <td>33.948333</td>
+      <td>10.80</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>TCL Electronics Holdings Ltd</td>
+      <td>0.000</td>
+      <td>4</td>
+      <td>41.28</td>
+      <td>59.229091</td>
+      <td>19.013636</td>
+      <td>2.00</td>
+      <td>1790000.0</td>
+      <td>30290.000000</td>
+      <td>33.948333</td>
+      <td>10.80</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Skyworth Group Ltd</td>
+      <td>0.000</td>
+      <td>4</td>
+      <td>41.28</td>
+      <td>37.500000</td>
+      <td>12.500000</td>
+      <td>1.75</td>
+      <td>10340000.0</td>
+      <td>17710.000000</td>
+      <td>35.000000</td>
+      <td>15.85</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Konka Group Co Ltd</td>
+      <td>0.000</td>
+      <td>4</td>
+      <td>41.28</td>
+      <td>59.229091</td>
+      <td>19.013636</td>
+      <td>0.75</td>
+      <td>198990.0</td>
+      <td>8170.000000</td>
+      <td>33.948333</td>
+      <td>10.80</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GoPro Inc</td>
+      <td>0.000</td>
+      <td>8</td>
+      <td>41.28</td>
+      <td>87.500000</td>
+      <td>25.000000</td>
+      <td>12.08</td>
+      <td>5680000.0</td>
+      <td>27225.555556</td>
+      <td>29.400000</td>
+      <td>2.53</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Funai Electric Co Ltd</td>
+      <td>0.000</td>
+      <td>4</td>
+      <td>32.52</td>
+      <td>42.860000</td>
+      <td>0.000000</td>
+      <td>2.00</td>
+      <td>1790000.0</td>
+      <td>11640.000000</td>
+      <td>33.948333</td>
+      <td>10.80</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="eda_ebitda.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">EBITDA</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sustnlytcs-esg-rsk-scr">Sustnlytcs ESG Rsk Scr</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iss-qualsc">ISS QualSc</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esg-disc-score">ESG Disc Score</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indep-directors">% Indep Directors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#women-on-bd">% Women on Bd</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ceo-tnr-asof-fy-end">CEO Tnr AsOf FY End</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tot-comp-pd-to-ceo-equiv">Tot Comp Pd to CEO &amp; Equiv</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pers-expn-per-empl">Pers Expn per Empl</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#women-emp">% Women Emp</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ltir">LTIR</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engy-intens-sls">Engy Intens/Sls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wste-per-sls">Wste Per Sls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wtr-intens-sls">Wtr Intens/Sls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-final">Base final</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valentina Cabrera, Valentina Bustamante
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
